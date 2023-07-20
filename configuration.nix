@@ -88,15 +88,19 @@
     # Git bash commands
     gco = "git checkout";
     gcm = "git commit -m";
-    gpl = "git pull";
+    gp = "git pull";
+    gc = "git clone";
     # python commands
     py = "python";
     py3 = "python3";
     http = "python -m http.server";
-# nixos commands
+    # nixos commands
     nx = "nixos-rebuild switch";
     nxsh = "nix-shell -p";
-    
+    nxconf = "sudo nvim /etc/nixos/configuration.nix";
+    # Personal commands
+    ls = "exa -l -color=always";
+    ncscan = "sudo nmap -sS -sV -O -T4 -A -v -Pn -p- -oN nmap-scan.txt";
   }
   users.defaultUserShell = pkgs.fish;
 
@@ -110,6 +114,9 @@
       #Browser
       pkgs.vivaldi
     ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICiDe2CMnDgWjXqMpQHxCSOmrjuAWwZazYPORZXlr2SF u0_a518@localhost"
+    ];
   };
 
   # Allow unfree packages
@@ -119,30 +126,43 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #Code Editors
+  # Code Editors
   micro
   neovim
   emacs
-  #SSH tools
+  # SSH tools
   mosh
-  #Shell/Terminal
+  # Shell/Terminal
   kitty
-  #Coding tools
+  # Coding tools
   git
   go
   rustup
-  #Persanol apps
+  python311
+  conda
+  # Persanol apps
   neofetch
   exa
-  #Network Sniffing tools
+  # Network Sniffing tools
   tshark
-  #Network Swiss army knife
+  # Network Swiss army knife
   bettercap
   nmap
-  #Process analysis
+  # Pentesting to tools
+  metasploit
+  # Password cracking tools
+  hashcat
+  john
+  hydra
+  # Process analysis
   btop
-  #Containerization
+  # Containerization/virtualization
+  virt-manager
   docker
+  # Remote Desktop Manager
+  freerdp
+  tigervnc
+
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
