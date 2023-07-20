@@ -110,9 +110,8 @@
     description = "charles";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
-      #Browser
-      pkgs.vivaldi
+      # Browser
+      vivaldi
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICiDe2CMnDgWjXqMpQHxCSOmrjuAWwZazYPORZXlr2SF u0_a518@localhost"
@@ -126,6 +125,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  curl
   # Code Editors
   micro
   neovim
