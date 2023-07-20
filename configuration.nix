@@ -85,6 +85,17 @@
   # Shell stuff
   programs.fish.enable = true;
   programs.fish.shellAbbrs {
+    # Git bash commands
+    gco = "git checkout";
+    gcm = "git commit -m";
+    gpl = "git pull";
+    # python commands
+    py = "python";
+    py3 = "python3";
+    http = "python -m http.server";
+# nixos commands
+    nx = "nixos-rebuild switch";
+    nxsh = "nix-shell -p";
     
   }
   users.defaultUserShell = pkgs.fish;
@@ -115,22 +126,23 @@
   #SSH tools
   mosh
   #Shell/Terminal
-  pkgs.kitty
+  kitty
   #Coding tools
-  pkgs.git
-  pkgs.go
-  pkgs.rustup
+  git
+  go
+  rustup
   #Persanol apps
-  pkgs.neofetch
-  pkgs.exa
+  neofetch
+  exa
   #Network Sniffing tools
-  pkgs.tshark
+  tshark
   #Network Swiss army knife
-  pkgs.bettercap
+  bettercap
+  nmap
   #Process analysis
-  pkgs.btop
+  btop
   #Containerization
-  pkgs.docker
+  docker
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
