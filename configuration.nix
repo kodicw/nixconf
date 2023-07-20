@@ -84,7 +84,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # Shell stuff
   programs.fish.enable = true;
-  programs.fish.shellAbbrs {
+  programs.fish.shellAbbrs = {
     # Git bash commands
     gco = "git checkout";
     gcm = "git commit -m";
@@ -101,7 +101,7 @@
     # Personal commands
     ls = "exa -l -color=always";
     ncscan = "sudo nmap -sS -sV -O -T4 -A -v -Pn -p- -oN nmap-scan.txt";
-  }
+  };
   users.defaultUserShell = pkgs.fish;
 
   users.users.charles = {
@@ -163,6 +163,8 @@
   freerdp
   tigervnc
 
+  unzip
+  steam
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
