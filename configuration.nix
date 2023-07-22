@@ -3,19 +3,21 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
-
-  networking.hostName = "r2"; # Define your hostname.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  # Enable opengl
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+  networking.hostName = "mainframe";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -24,6 +26,8 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  # VPN service
+  services.tailscale.enable = true; 
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -42,15 +46,43 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-
+  
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  # Enablle Wayland compositor sway
-  
+  services.xserver.videoDrivers = ["nvidia"];
+  # Enable Wayland compositor Sway
+  programs.sway.enable = true;
+  xdg.portal.wlr.enable = true;
 
+  # Nvidia GPU drivers
+  hardware.nvidia = {
+    # Modesetting is needed for most Wayland compositors
+    modesetting.enable = true;
+    # Use the open source version of the kernel module
+    open = false;
+    # Enable the nvidia settings menu
+    nvidiaSettings = true;
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+
+  # Virtualization
+  virtualisation.libvirtd.enable = true;
+  
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-tour
+  ]) ++ ( with pkgs.gnome; [
+    gnome-music
+    gnome-terminal
+    epiphany
+    geary
+    tali
+    atomix
+    hitori
+  ]);
 
   # Configure keymap in X11
   services.xserver = {
@@ -80,9 +112,6 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # Shell stuff
   programs.fish.enable = true;
   programs.fish.shellAbbrs = {
     # Git bash commands
@@ -99,16 +128,16 @@
     nxsh = "nix-shell -p";
     nxconf = "sudo nvim /etc/nixos/configuration.nix";
     # Personal commands
-    ls = "exa -l -color=always";
+    ls = "exa -l --icons";
     ncscan = "sudo nmap -sS -sV -O -T4 -A -v -Pn -p- -oN nmap-scan.txt";
   };
   users.defaultUserShell = pkgs.fish;
-
+  
   users.users.charles = {
     isNormalUser = true;
     useDefaultShell = true;
     description = "charles";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvertd" ];
     packages = with pkgs; [
       # Browser
       vivaldi
@@ -120,16 +149,13 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  environment.variables = {
+    EDITOR = "nvim";
+  };
   environment.systemPackages = with pkgs; [
-  # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   curl
   # Code Editors
-  micro
   neovim
-  emacs
   # SSH tools
   mosh
   # Shell/Terminal
@@ -138,8 +164,11 @@
   git
   go
   rustup
+  cargo
   python311
-  conda
+  gcc
+  clang
+  nodejs_20
   # Persanol apps
   neofetch
   exa
@@ -153,7 +182,6 @@
   # Password cracking tools
   hashcat
   john
-  hydra
   # Process analysis
   btop
   # Containerization/virtualization
@@ -162,9 +190,11 @@
   # Remote Desktop Manager
   freerdp
   tigervnc
-
+  nerdfonts
   unzip
+  zip
   steam
+  exa
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -178,7 +208,13 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-   services.openssh.enable = true;
+   services.openssh = {
+     enable = true;
+     # require public key authentication for better security
+     settings.PasswordAuthentication = false;
+     settings.KbdInteractiveAuthentication = false;
+     #settings.PermitRootLogin = "yes";
+};
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
