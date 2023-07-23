@@ -159,6 +159,7 @@
   neovim
   # SSH tools
   mosh
+  sshfs
   # Shell/Terminal
   kitty
   # Coding tools
@@ -179,11 +180,6 @@
   bettercap
   nmap
   # Pentesting to tools
-  metasploit
-  # Password cracking tools
-  hashcat
-  john
-  # Process analysis
   btop
   # Containerization/virtualization
   virt-manager
@@ -194,10 +190,8 @@
   nerdfonts
   unzip
   zip
-  steam
   exa
   rpi-imager
-  sshfs
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
