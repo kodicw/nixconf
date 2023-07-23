@@ -119,12 +119,13 @@
     gcm = "git commit -m";
     gp = "git pull";
     gc = "git clone";
+    gra = "git remote add";
     # python commands
     py = "python";
     py3 = "python3";
     http = "python -m http.server";
     # nixos commands
-    nx = "nixos-rebuild switch";
+    nx = "sudo nixos-rebuild switch";
     nxsh = "nix-shell -p";
     nxconf = "sudo nvim /etc/nixos/configuration.nix";
     # Personal commands
@@ -195,6 +196,8 @@
   zip
   steam
   exa
+  rpi-imager
+  sshfs
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
