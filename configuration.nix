@@ -1,28 +1,23 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
   # Enable opengl
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
   };
+  
+  # Networking
   networking.hostName = "mainframe";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -34,7 +29,6 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
@@ -50,6 +44,7 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.videoDrivers = ["nvidia"];
+
   # Enable Wayland compositor Sway
   programs.sway.enable = true;
   xdg.portal.wlr.enable = true;
@@ -60,7 +55,7 @@
     modesetting.enable = true;
     # Use the open source version of the kernel module
     open = false;
-    # Enable the nvidia settings menu
+    # Enable the nvidia settings menu{from = 60000; to = 61000;} 22 ];
     nvidiaSettings = true;
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -68,6 +63,9 @@
 
   # Virtualization
   virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.allowedBridges = [ "virbr0" ];
+  networking.dhcpcd.denyInterfaces = [ "macvtap0@*" ]; 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -95,6 +93,7 @@
 
   # Enable sound with pipewire.
   sound.enable = true;
+
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -112,26 +111,28 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-  programs.fish.enable = true;
-  programs.fish.shellAbbrs = {
-    # Git bash commands
-    gco = "git checkout";
-    gcm = "git commit -m";
-    gp = "git pull";
-    gc = "git clone";
-    gra = "git remote add";
-    # python commands
-    py = "python";
-    py3 = "python3";
-    http = "python -m http.server";
-    # nixos commands
-    nx = "sudo nixos-rebuild switch";
-    nxsh = "nix-shell -p";
-    nxconf = "sudo nvim /etc/nixos/configuration.nix";
-    # Personal commands
-    ls = "exa -l --icons";
-    ncscan = "sudo nmap -sS -sV -O -T4 -A -v -Pn -p- -oN nmap-scan.txt";
+  programs.fish = {
+      enable = true;
+      shellAbbrs = {
+        # Git bash commands
+        gco = "git checkout";
+        gcm = "git commit -m";
+        gp = "git pull";
+        gc = "git clone";
+        gra = "git remote add";
+        # python commands
+        py = "python";
+        py3 = "python3";
+        http = "python -m http.server";
+        # nixos commands
+        nx = "sudo nixos-rebuild switch";
+        nxsh = "nix-shell -p";
+        nxconf = "sudo nvim /etc/nixos/configuration.nix";
+        # Personal commands
+        ls = "exa -l --icons";
+        nm = "sudo nmap -sS -sC -sV -O -T4 -A -v -Pn -p- -oN nmap-scan.txt";
   };
+};
   users.defaultUserShell = pkgs.fish;
   
   users.users.charles = {
@@ -166,7 +167,11 @@
   go
   rustup
   cargo
-  python311
+  (python311.withPackages(ps: with ps; [ pandas
+                                         requests 
+                                         flask
+                                         selenium
+                                       ]))
   gcc
   clang
   nodejs_20
@@ -192,13 +197,21 @@
   freerdp
   tigervnc
   nerdfonts
-  unzip
-  zip
+  unzip zip
   steam
   exa
   rpi-imager
   sshfs
+  libreoffice
+  home-manager pass wl-clipboard
   ];
+
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+   enable = true;
+   pinentryFlavor = "curses";
+   enableSSHSupport = true;
+};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -221,7 +234,8 @@
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ];
+  networking.firewall.allowedUDPPortRanges = [{ from = 60000; to = 61000; }];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
