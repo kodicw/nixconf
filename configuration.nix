@@ -64,7 +64,6 @@
   # Virtualization
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.allowedBridges = [ "virbr0" ];
-  networking.dhcpcd.denyInterfaces = [ "macvtap0@*" ]; 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
   # Enable the GNOME Desktop Environment.
@@ -73,13 +72,7 @@
   environment.gnome.excludePackages = (with pkgs; [
     gnome-tour
   ]) ++ ( with pkgs.gnome; [
-    gnome-music
-    gnome-terminal
-    epiphany
-    geary
-    tali
-    atomix
-    hitori
+    gnome-music gnome-terminal epiphany geary tali atomix hitori
   ]);
 
   # Configure keymap in X11
@@ -155,55 +148,40 @@
     EDITOR = "nvim";
   };
   environment.systemPackages = with pkgs; [
-  curl
-  # Code Editors
-  neovim
+  # UTILS
+  prusa-slicer curl
+  # CLI tools
+  neovim tmux exa neofetch
   # SSH tools
   mosh
   # Shell/Terminal
   kitty
-  # Coding tools
-  git
-  go
-  rustup
-  cargo
+  # Dev ENV
+  git go rustup cargo ruff gcc clang nodejs_20
   (python311.withPackages(ps: with ps; [ pandas
                                          requests 
                                          flask
                                          selenium
+                                         sqlalchemy
                                        ]))
-  gcc
-  clang
-  nodejs_20
-  # Persanol apps
-  neofetch
-  exa
-  # Network Sniffing tools
-  tshark
-  # Network Swiss army knife
-  bettercap
-  nmap
+  # Networking tools
+  tshark bettercap nmap
   # Pentesting to tools
-  metasploit
-  # Password cracking tools
-  hashcat
-  john
+  metasploit hashcat john
   # Process analysis
   btop
   # Containerization/virtualization
   virt-manager
   docker
   # Remote Desktop Manager
-  freerdp
-  tigervnc
+  freerdp tigervnc
   nerdfonts
   unzip zip
   steam
-  exa
-  rpi-imager
-  sshfs
-  libreoffice
-  home-manager pass wl-clipboard
+  # UTILS
+  rpi-imager sshfs libreoffice home-manager 
+  # Pass UTILS
+  pass wl-clipboard
   ];
 
   services.pcscd.enable = true;
