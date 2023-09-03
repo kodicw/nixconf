@@ -18,11 +18,19 @@
   # Networking
   networking.hostName = "mainframe";
 
-
   # Enable networking
   networking.networkmanager.enable = true;
+  
   # VPN service
-  services.tailscale.enable = true; 
+  services.tailscale.enable = true;
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+  services.xserver.videoDrivers = ["nvidia"];
+  # Enable Cronjob service
+  services.cron.enable = true;
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -41,13 +49,16 @@
     LC_TIME = "en_US.UTF-8";
   };
   
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = ["nvidia"];
+
+
+  # Bluetooth
+  services.blueman.enable = true;
+  hardware.bluetooth.package = pkgs.bluez;
+  hardware.bluetooth.enable = true;
 
   # Enable Wayland compositor Sway
-  programs.sway.enable = true;
-  xdg.portal.wlr.enable = true;
+  xdg.portal = { enable = true; extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; };
+    # If you want to use JACK applications, uncomment this
 
   # Nvidia GPU drivers
   hardware.nvidia = {
@@ -55,25 +66,21 @@
     modesetting.enable = true;
     # Use the open source version of the kernel module
     open = false;
-    # Enable the nvidia settings menu{from = 60000; to = 61000;} 22 ];
     nvidiaSettings = true;
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  # Disable Pulse audio 
+  hardware.pulseaudio.enable = false;
 
   # Virtualization
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.allowedBridges = [ "virbr0" ];
+
+  # Nix experimental 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  programs.sway.enable = true;
   
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-tour
-  ]) ++ ( with pkgs.gnome; [
-    gnome-music gnome-terminal epiphany geary tali atomix hitori
-  ]);
 
   # Configure keymap in X11
   services.xserver = {
@@ -81,32 +88,55 @@
     xkbVariant = "";
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+  #KDE Plasma5
+  #services.xserver.displayManager.lightdm.greeters.slick.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager.defaultSession = "plasmawayland";
+  environment.plasma5.excludePackages = with pkgs.libsForQt5; [
+  elisa
+  gwenview
+  okular
+  oxygen
+  khelpcenter
+  konsole
+  plasma-browser-integration
+  print-manager
+];
 
   # Enable sound with pipewire.
-  sound.enable = true;
-
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
+    jack.enable = true;
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
 
+
+  environment.sessionVariables = {
+    # If your cursor becomes invisible
+    WLR_NO_HARDWARE_CURSORS = "1";
+    # Hint electron apps to use wayland
+    NIXOS_OZONE_WL = "1";
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-  programs.fish = {
+  programs = { 
+    hyprland = {
+      enable = true;
+      enableNvidiaPatches = true;
+      xwayland.enable = true;
+    };
+    fish = {
       enable = true;
       shellAbbrs = {
+        cats = "bat";
         # Git bash commands
         gco = "git checkout";
         gcm = "git commit -m";
@@ -126,62 +156,110 @@
         nm = "sudo nmap -sS -sC -sV -O -T4 -A -v -Pn -p- -oN nmap-scan.txt";
   };
 };
-  users.defaultUserShell = pkgs.fish;
+};
   
-  users.users.charles = {
-    isNormalUser = true;
-    useDefaultShell = true;
-    description = "charles";
-    extraGroups = [ "networkmanager" "wheel" "libvertd" ];
-    packages = with pkgs; [
-      # Browser
-      vivaldi
-    ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICiDe2CMnDgWjXqMpQHxCSOmrjuAWwZazYPORZXlr2SF u0_a518@localhost"
-    ];
+  users = {
+    defaultUserShell = pkgs.fish;
+    users = { 
+      charles = {
+        isNormalUser = true;
+        useDefaultShell = true;
+        description = "charles";
+        extraGroups = [ "networkmanager" "wheel" "libvertd" ];
+        packages = with pkgs; [
+          # Browser
+          vivaldi
+          # Hyperland stuff
+          neovim
+          rofi
+          swww
+          waypaper
+          waybar
+          dunst
+          # Pentesting to tools
+          metasploit hashcat john
+          #File Manager
+          google-chrome
+        ];
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICiDe2CMnDgWjXqMpQHxCSOmrjuAWwZazYPORZXlr2SF u0_a518@localhost"
+        ];
+      };
+      Angel = {
+        isNormalUser = true;
+        description = "Puppy girl";
+        packages = with pkgs; [
+          google-chrome
+        ];
+      };
+      Phoenix = {
+        isNormalUser = true;
+        description = "Boo";
+        extraGroups = [ "networkmanager" "wheel" "libvertd" ];
+        packages = with pkgs; [
+          google-chrome
+          vivaldi
+          swww
+          obs-studio
+        ];
+      };
+    };
   };
+
+  
+  services.hardware.openrgb.enable = true;
+  services.pipewire.wireplumber.enable = true;
+
+
+
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   environment.variables = {
     EDITOR = "nvim";
   };
+  programs.steam = {
+  enable = true;
+  remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+  dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+
   environment.systemPackages = with pkgs; [
   # UTILS
   prusa-slicer curl
+  #Tor
+  tor-browser-bundle-bin
+  tor
   # CLI tools
-  neovim tmux exa neofetch
+  micro bat tmux exa neofetch walk
   # SSH tools
-  mosh
+  mosh sshfs
   # Shell/Terminal
   kitty
   # Dev ENV
-  git go rustup cargo ruff gcc clang nodejs_20
-  (python311.withPackages(ps: with ps; [ pandas
-                                         requests 
-                                         flask
-                                         selenium
-                                         sqlalchemy
+  git nim go rustup cargo ruff gcc clang nodejs_20
+  (python311.withPackages(ps: with ps; [ pandas requests flask selenium sqlalchemy ffmpeg-python
+                                         openpyxl pyquery
                                        ]))
+  chromedriver
   # Networking tools
   tshark bettercap nmap
-  # Pentesting to tools
-  metasploit hashcat john
   # Process analysis
   btop
+  # Audio
+  helvum
   # Containerization/virtualization
-  virt-manager
-  docker
+  virt-manager docker
   # Remote Desktop Manager
-  freerdp tigervnc
+  freerdp 
   nerdfonts
   unzip zip
-  steam
   # UTILS
-  rpi-imager sshfs libreoffice home-manager 
+  rpi-imager libreoffice 
   # Pass UTILS
   pass wl-clipboard
+  # swaync
+  swaynotificationcenter
   ];
 
   services.pcscd.enable = true;
@@ -212,7 +290,7 @@
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ];
+  networking.firewall.allowedUDPPorts = [2088];
   networking.firewall.allowedUDPPortRanges = [{ from = 60000; to = 61000; }];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -224,5 +302,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
-}
+} 
