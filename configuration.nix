@@ -20,19 +20,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  
-  # VPN service
-  services.tailscale.enable = true;
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = ["nvidia"];
-  # Enable Cronjob service
-  services.cron.enable = true;
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-
-  # Set your time zone.
+   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 
   # Select internationalisation properties.
@@ -49,7 +37,16 @@
     LC_TIME = "en_US.UTF-8";
   };
   
-
+ 
+  # VPN service
+  services.tailscale.enable = true;
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+  services.xserver.videoDrivers = ["nvidia"];
+  # Enable Cronjob service
+  services.cron.enable = true;
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
 
   # Bluetooth
   services.blueman.enable = true;
@@ -93,17 +90,7 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.displayManager.defaultSession = "plasmawayland";
-  environment.plasma5.excludePackages = with pkgs.libsForQt5; [
-  elisa
-  gwenview
-  okular
-  oxygen
-  khelpcenter
-  konsole
-  plasma-browser-integration
-  print-manager
-];
-
+  
   # Enable sound with pipewire.
   security.rtkit.enable = true;
   services.pipewire = {
@@ -159,7 +146,7 @@
 };
   
   users = {
-    defaultUserShell = pkgs.fish;
+    defaultUserShell = pkgs.nushell;
     users = { 
       charles = {
         isNormalUser = true;
@@ -173,13 +160,17 @@
           neovim
           rofi
           swww
+	  zellij
           waypaper
           waybar
           dunst
+	  starship
+	  ffmpeg
           # Pentesting to tools
           metasploit hashcat john
           #File Manager
           google-chrome
+          obs-studio
         ];
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICiDe2CMnDgWjXqMpQHxCSOmrjuAWwZazYPORZXlr2SF u0_a518@localhost"
@@ -237,7 +228,7 @@
   # Shell/Terminal
   kitty
   # Dev ENV
-  git nim go rustup cargo ruff gcc clang nodejs_20
+  git nim go rustup cargo ruff gcc clang nodejs_20 ruby
   (python311.withPackages(ps: with ps; [ pandas requests flask selenium sqlalchemy ffmpeg-python
                                          openpyxl pyquery
                                        ]))
