@@ -22,7 +22,7 @@
       };
       Angel = {
         isNormalUser = true;
-        description = "Puppy girl";
+        description = "Angel";
         packages = with pkgs; [
           google-chrome
         ];

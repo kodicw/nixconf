@@ -1,8 +1,12 @@
 { config, pkgs, ... }:
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
+      ./apps.nix
+      ./hyprland.nix
+      ./users.nix
+      ./dev.nix
     ];
   # Bootloader
   boot.loader.systemd-boot.enable = true;
@@ -38,8 +42,6 @@
   };
   
  
-  # VPN service
-  services.tailscale.enable = true;
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.videoDrivers = ["nvidia"];
@@ -50,12 +52,11 @@
 
   # Bluetooth
   services.blueman.enable = true;
-  hardware.bluetooth.package = pkgs.bluez;
   hardware.bluetooth.enable = true;
 
   # Enable Wayland compositor Sway
-  xdg.portal = { enable = true; extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; };
-    # If you want to use JACK applications, uncomment this
+  # xdg.portal = { enable = true; extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; };
+  # If you want to use JACK applications, uncomment this
 
   # Nvidia GPU drivers
   hardware.nvidia = {
@@ -64,15 +65,17 @@
     # Use the open source version of the kernel module
     open = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+    #package = (config.boot.kernelPackages.nvidiaPackages.stable.overrideAttrs {
+    #src = pkgs.fetchurl {
+      #url = "https://download.nvidia.com/XFree86/Linux-x86_64/525.125.06/NVIDIA-Linux-x86_64-525.125.06.run";
+      #sha256 = "17av8nvxzn5af3x6y8vy5g6zbwg21s7sq5vpa1xc6cx8yj4mc9xm";
+    #};
+  #});
   };
 
   # Disable Pulse audio 
   hardware.pulseaudio.enable = false;
-
-  # Virtualization
-  virtualisation.libvirtd.enable = true;
-  virtualisation.libvirtd.allowedBridges = [ "virbr0" ];
 
   # Nix experimental 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -85,172 +88,19 @@
     xkbVariant = "";
   };
 
-  #KDE Plasma5
-  #services.xserver.displayManager.lightdm.greeters.slick.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.displayManager.defaultSession = "plasmawayland";
-  
-  # Enable sound with pipewire.
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-
-  environment.sessionVariables = {
-    # If your cursor becomes invisible
-    WLR_NO_HARDWARE_CURSORS = "1";
-    # Hint electron apps to use wayland
-    NIXOS_OZONE_WL = "1";
-  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-  programs = { 
-    hyprland = {
-      enable = true;
-      enableNvidiaPatches = true;
-      xwayland.enable = true;
-    };
-    fish = {
-      enable = true;
-      shellAbbrs = {
-        cats = "bat";
-        # Git bash commands
-        gco = "git checkout";
-        gcm = "git commit -m";
-        gp = "git pull";
-        gc = "git clone";
-        gra = "git remote add";
-        # python commands
-        py = "python";
-        py3 = "python3";
-        http = "python -m http.server";
-        # nixos commands
-        nx = "sudo nixos-rebuild switch";
-        nxsh = "nix-shell -p";
-        nxconf = "sudo nvim /etc/nixos/configuration.nix";
-        # Personal commands
-        ls = "exa -l --icons";
-        nm = "sudo nmap -sS -sC -sV -O -T4 -A -v -Pn -p- -oN nmap-scan.txt";
-  };
-};
-};
-  
-  users = {
-    defaultUserShell = pkgs.nushell;
-    users = { 
-      charles = {
-        isNormalUser = true;
-        useDefaultShell = true;
-        description = "charles";
-        extraGroups = [ "networkmanager" "wheel" "libvertd" ];
-        packages = with pkgs; [
-          # Browser
-          vivaldi
-          # Hyperland stuff
-          neovim
-          rofi
-          swww
-	  zellij
-          waypaper
-          waybar
-          dunst
-	  starship
-	  ffmpeg
-          # Pentesting to tools
-          metasploit hashcat john
-          #File Manager
-          google-chrome
-          obs-studio
-        ];
-        openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICiDe2CMnDgWjXqMpQHxCSOmrjuAWwZazYPORZXlr2SF u0_a518@localhost"
-        ];
-      };
-      Angel = {
-        isNormalUser = true;
-        description = "Puppy girl";
-        packages = with pkgs; [
-          google-chrome
-        ];
-      };
-      Phoenix = {
-        isNormalUser = true;
-        description = "Boo";
-        extraGroups = [ "networkmanager" "wheel" "libvertd" ];
-        packages = with pkgs; [
-          google-chrome
-          vivaldi
-          swww
-          obs-studio
-        ];
-      };
-    };
-  };
-
   
   services.hardware.openrgb.enable = true;
   services.pipewire.wireplumber.enable = true;
-
-
-
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   environment.variables = {
     EDITOR = "nvim";
   };
-  programs.steam = {
-  enable = true;
-  remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-  dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
-
   environment.systemPackages = with pkgs; [
-  # UTILS
-  prusa-slicer curl
-  #Tor
-  tor-browser-bundle-bin
-  tor
-  # CLI tools
-  micro bat tmux exa neofetch walk
-  # SSH tools
-  mosh sshfs
-  # Shell/Terminal
-  kitty
-  # Dev ENV
-  git nim go rustup cargo ruff gcc clang nodejs_20 ruby
-  (python311.withPackages(ps: with ps; [ pandas requests flask selenium sqlalchemy ffmpeg-python
-                                         openpyxl pyquery
-                                       ]))
-  chromedriver
-  # Networking tools
-  tshark bettercap nmap
-  # Process analysis
-  btop
-  # Audio
-  helvum
-  # Containerization/virtualization
-  virt-manager docker
-  # Remote Desktop Manager
-  freerdp 
-  nerdfonts
-  unzip zip
-  # UTILS
-  rpi-imager libreoffice 
-  # Pass UTILS
-  pass wl-clipboard
-  # swaync
-  swaynotificationcenter
+  steam-tui
   ];
 
   services.pcscd.enable = true;
