@@ -20,13 +20,13 @@ Pre-configured applications and services include:
 
 Additionally, Fish is configured with abbreviations for quick Nix operations, and the system environment is set up to prompt Electron apps to use Wayland.
 
-The `apps.nix` file includes the main system configuration, and the `hyprland.nix` file contains tweaks for running Hyperland.
+The `apps.nix` file includes the main system configuration, and the `hyprland.nix` file contains tweaks for running Hyprland.
 
 ## Usage
-
+**Note this does not work yet**
 First, clone this repository to your local machine.
 
-Then, navigate to your configuration.nix file and run the command `sudo nixos-rebuild switch` to apply the configuration.
+Then, navigate to your configuration.nix add the imports and run the command `sudo nixos-rebuild switch` to apply the configuration. 
 
 Please make sure to have the appropriate permissions and system requirements before applying any configurations.  
 
