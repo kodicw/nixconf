@@ -9,6 +9,7 @@
         description = "charles";
         extraGroups = [ "networkmanager" "wheel" "libvertd" "docker" ];
         packages = with pkgs; [
+          swww
           vivaldi
 	  shell_gpt
 	  pulsemixer

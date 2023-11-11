@@ -99,9 +99,6 @@
   environment.variables = {
     EDITOR = "nvim";
   };
-  environment.systemPackages = with pkgs; [
-  steam-tui
-  ];
 
   services.pcscd.enable = true;
   programs.gnupg.agent = {
