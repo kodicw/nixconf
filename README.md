@@ -1,5 +1,5 @@
 # NixConf
-
+![Image of my desktop](./20231113_21h01m37s_grim.png)
 ## About
 This is my personal nix configuration. I've split into sevreral .nix files to organize it.
 you can import indavidual nix configs or all of them. this is still a work in progress.
@@ -9,7 +9,6 @@ This repository contains my personal Nix configuration split into several .nix f
 This is a continually evolving work in progress, and you can import individual nix configs or all of them based on your preference.
 Pre-configured applications and services include:
 
-![Image of my desktop](./20231113_21h01m37s_grim.png)
 
 - Virtual Management tools: Docker, Virt-Manager, Tailscale
 - Display (Plasma5), audio (Pipewire), text editors (Neovim, Helix)
