@@ -9,8 +9,10 @@
 This repository contains my personal Nix configuration split into several .nix files for better organization and ease of use. The configurations cover a broad range of applications from core system settings to web browsers and network tools, all set up with my preferred settings. 
 
 This is a continually evolving work in progress, and you can import individual nix configs or all of them based on your preference.
-[Image of my desktop](./20231113_21h01m37s_grim.png)
 Pre-configured applications and services include:
+
+![Image of my desktop](./20231113_21h01m37s_grim.png)
+
 - Virtual Management tools: Docker, Virt-Manager, Tailscale
 - Display (Plasma5), audio (Pipewire), text editors (Neovim, Helix)
 - Shell/Terminal: Kitty, Zellij
