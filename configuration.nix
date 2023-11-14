@@ -12,13 +12,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Enable opengl
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-  
   # Networking
   networking.hostName = "mainframe";
 
@@ -79,7 +72,6 @@
 
   # Nix experimental 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  programs.sway.enable = true;
   
 
   # Configure keymap in X11
@@ -96,9 +88,6 @@
   services.pipewire.wireplumber.enable = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  environment.variables = {
-    EDITOR = "nvim";
-  };
 
   services.pcscd.enable = true;
   programs.gnupg.agent = {

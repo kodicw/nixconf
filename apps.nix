@@ -34,7 +34,7 @@
     xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib
     libreoffice
     # <-------- Virtualisation/Containers -------->
-    docker virt-manager
+    docker
     # <-------- Shell/Terminal -------->
     kitty # GPU accellerated Terminal.
     helix marksman # Text editor accesed with hx comes with sensible defaults and LSPs.
@@ -80,5 +80,9 @@
 	    remotePlay.openFirewall = true;
 	    dedicatedServer.openFirewall = true;
 	};
+    };
+
+    environment.sessionVariables = {
+         EDITOR = "nvim";
     };
 }
