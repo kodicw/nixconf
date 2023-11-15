@@ -1,8 +1,6 @@
 # NixConf
 ![Image of my desktop](./20231113_21h01m37s_grim.png)
 ## About
-This is my personal nix configuration. I've split into sevreral .nix files to organize it.
-you can import indavidual nix configs or all of them. this is still a work in progress.
 
 This repository contains my personal Nix configuration split into several .nix files for better organization and ease of use. The configurations cover a broad range of applications from core system settings to web browsers and network tools, all set up with my preferred settings. 
 
