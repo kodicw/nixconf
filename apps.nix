@@ -64,6 +64,7 @@
     nmap # Network swiss army knife
     # <-------- Secrets/Passwords -------->
     bitwarden pass wl-clipboard
+    # tests
     ];
 
     programs = {
