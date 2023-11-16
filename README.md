@@ -25,14 +25,6 @@ Additionally, Fish is configured with abbreviations for quick Nix operations, an
 
 The `apps.nix` file includes the main system configuration, and the `hyprland.nix` file contains tweaks for running Hyprland.
 
-## Usage
-**Note this does not work yet**
-First, clone this repository to your local machine.
-
-Then, navigate to your configuration.nix add the imports and run the command `sudo nixos-rebuild switch` to apply the configuration. 
-
-Please make sure to have the appropriate permissions and system requirements before applying any configurations.  
-
 ## Contribution
 
 As this repository hosts my personal configurations, any changes reflect my personal preference. However, I encourage you to use these configurations as a reference or starting point. If you want to propose changes or improvements, feel free to Open an issue or submit a pull request, and I will review it when I can.
