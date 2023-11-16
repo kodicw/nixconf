@@ -65,6 +65,7 @@
     # <-------- Secrets/Passwords -------->
     bitwarden pass wl-clipboard
     # tests
+    home-manager
     ];
 
     programs = {
