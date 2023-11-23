@@ -7,6 +7,7 @@
       ./hyprland.nix
       ./users.nix
       ./dev.nix
+      ./server.nix
     ];
   # Bootloader
   boot.loader.systemd-boot.enable = true;
@@ -116,11 +117,10 @@
 };
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [80];
   networking.firewall.allowedUDPPorts = [2088];
   networking.firewall.allowedUDPPortRanges = [{ from = 60000; to = 61000; }];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

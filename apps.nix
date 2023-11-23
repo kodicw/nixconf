@@ -34,16 +34,18 @@
     xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib
     libreoffice
     # <-------- Virtualisation/Containers -------->
-    docker
+    docker gnome.gnome-boxes
     # <-------- Shell/Terminal -------->
     kitty # GPU accellerated Terminal.
     helix marksman # Text editor accesed with hx comes with sensible defaults and LSPs.
     neovim # Best text editor.
+    obsidian
     zellij # Basically a rust based modern version of tmux.
     # <-------- Charm.sh -------->
     glow # Render markdown in the terminal.
     skate 
     mods # Use AI to inturpret the output of a command and do stuff with it.
+    gnome.nautilus
     pop # Send emails from the terminal using resend API .
     gum
     # <-------- Camera/Video/Audio  -------->
