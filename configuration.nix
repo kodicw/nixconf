@@ -8,6 +8,7 @@
       ./users.nix
       ./dev.nix
       ./server.nix
+      ./remote.nix
     ];
   # Bootloader
   boot.loader.systemd-boot.enable = true;
@@ -59,7 +60,7 @@
     # Use the open source version of the kernel module
     open = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
     #package = (config.boot.kernelPackages.nvidiaPackages.stable.overrideAttrs {
     #src = pkgs.fetchurl {
       #url = "https://download.nvidia.com/XFree86/Linux-x86_64/525.125.06/NVIDIA-Linux-x86_64-525.125.06.run";

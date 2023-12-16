@@ -7,7 +7,7 @@
         isNormalUser = true;
         useDefaultShell = true;
         description = "charles";
-        extraGroups = [ "networkmanager" "wheel" "libvertd" "docker" ];
+        extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
         packages = with pkgs; [
           swww
           vivaldi
@@ -35,6 +35,7 @@
         packages = with pkgs; [
           google-chrome
           vivaldi
+          vlc
           obs-studio
         ];
       };

@@ -5,6 +5,7 @@
 
     # Virtualisation
     virtualisation.libvirtd.enable = true;
+    virtualisation.libvirtd.qemu.swtpm.enable = true;
     virtualisation.libvirtd.allowedBridges = [ "virbr0" ];
     virtualisation.docker.enable = true;
 
@@ -12,17 +13,17 @@
     # Display stuff
     services.xserver = {
     	displayManager.sddm.enable = true;
-	desktopManager.plasma5.enable = true;
+	    desktopManager.plasma5.enable = true;
     };
 
     # Audio
     security.rtkit.enable = true;
     services.pipewire = {
-	enable = true;
-	alsa.enable = true;
-	alsa.support32Bit = true;
-	pulse.enable = true;
-	jack.enable = true;
+    	enable = true;
+    	alsa.enable = true;
+    	alsa.support32Bit = true;
+    	pulse.enable = true;
+    	jack.enable = true;
     };
     # System Install Applications
     environment.systemPackages = with pkgs; [
@@ -33,8 +34,12 @@
     xorg.libXi xorg.libXmu freeglut
     xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib
     libreoffice
+    virt-manager
+    win-virtio
+    bottles
+    wine
     # <-------- Virtualisation/Containers -------->
-    docker gnome.gnome-boxes
+    docker 
     # <-------- Shell/Terminal -------->
     kitty # GPU accellerated Terminal.
     helix marksman # Text editor accesed with hx comes with sensible defaults and LSPs.
@@ -68,25 +73,27 @@
     bitwarden pass wl-clipboard
     # tests
     home-manager
+    ollama
+    walk
     ];
 
     programs = {
         fish = {
-            enable = true;
-	    shellAbbrs = {
-	    # Quick Nix
-	    nx = "sudo nixos-rebuild switch";
-	    nxconf = "sudo nvim /etc/nixos/configuration.nix";
-	    };
+          enable = true;
+	        shellAbbrs = {
+	            # Quick Nix
+	          nx = "sudo nixos-rebuild switch";
+	          nxconf = "sudo nvim /etc/nixos/configuration.nix";
+	        };
         };
-	steam = {
-	    enable = true;
-	    remotePlay.openFirewall = true;
-	    dedicatedServer.openFirewall = true;
-	};
-    };
-
+  	    steam = {
+  	      enable = true;
+  	      remotePlay.openFirewall = true;
+  	      dedicatedServer.openFirewall = true;
+      	};
+      };
+  
     environment.sessionVariables = {
-         EDITOR = "nvim";
+      EDITOR = "nvim";
     };
 }
