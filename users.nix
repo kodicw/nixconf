@@ -35,6 +35,9 @@
         packages = with pkgs; [
           google-chrome
           vivaldi
+          streamdeck-ui
+          ytfzf
+          instaloader
           vlc
           obs-studio
         ];

@@ -15,18 +15,13 @@
     programs = {
 	    hyprland = {
 	    enable = true;
-	    # enableNvidiaPatches = true;
+	    enableNvidiaPatches = true;
 	    xwayland.enable = true;
 	    };
     };
     environment.systemPackages = with pkgs; [
-        # Hyprland 
-	    grim # Screenshot tool for wayland
+      # Hyprland 
 	    polkit # for auth
 	    rofi # Application search bar
-	    swww # Wallpaper manager
-	    waypaper # Another wallpaper manager
-	    waybar # Cool bar thing
-	    dunst # Notification Daemon
     ];
 }

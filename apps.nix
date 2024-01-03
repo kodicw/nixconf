@@ -7,6 +7,7 @@
     virtualisation.libvirtd.enable = true;
     virtualisation.libvirtd.qemu.swtpm.enable = true;
     virtualisation.libvirtd.allowedBridges = [ "virbr0" ];
+    virtualisation.waydroid.enable = true;
     virtualisation.docker.enable = true;
 
 
@@ -37,6 +38,7 @@
     virt-manager
     win-virtio
     bottles
+    psmisc
     wine
     # <-------- Virtualisation/Containers -------->
     docker 
@@ -75,6 +77,9 @@
     home-manager
     ollama
     walk
+    nvtop
+    prusa-slicer
+    pywal
     ];
 
     programs = {
