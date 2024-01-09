@@ -4,6 +4,7 @@
   services.paperless = {
     enable = true;
     port = 7272;
-    extraConfig.PAPERLESS_AUTO_LOGIN_USERNAME = "admin";
+    passwordFile = "/etc/pass";
   };
+  environment.etc."pass".text = "1234";
 }

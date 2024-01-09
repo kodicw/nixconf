@@ -10,7 +10,7 @@
       ./server.nix
       ./remote.nix
       ./odoo.nix
-      ./modules/servers/paperless.nix
+      #./modules/servers/paperless.nix
     ];
   # Bootloader
   nix.settings.auto-optimise-store = true;

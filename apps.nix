@@ -33,6 +33,7 @@
     cudatoolkit
     linuxPackages.nvidia_x11
     xorg.libXi xorg.libXmu freeglut
+    pmutils
     xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib
     libreoffice
     virt-manager
