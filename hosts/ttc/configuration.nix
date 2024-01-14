@@ -15,24 +15,17 @@ let
     { pkgs = unstable; };
 in
 {
-  imports = [ <home-manager/nixos> ];
+  imports = [
+    <home-manager/nixos>
+    /etc/nixos/hardware-configuration.nix
+  ];
   services.xserver.enable = true;
   services.xserver.displayManager = {
-    sddm.enable = true;
-    sddm.theme = "${import ./sddm-theme.nix { inherit pkgs; }}";
+    gdm.enable = true;
   };
   services.xserver.desktopManager.gnome.enable = true;
 
-  programs.vscode = with pkgs.vscode-extensions; {
-    extensions = [
-      ms-python.python
-    ];
-  };
 
-  system.activationScripts.setWallpaper = pkgs.writeShellScript "set-              wallpaper" '' 
-  ${pkgs.curl}/bin/curl -o /tmp/background.jpg "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/12/6a/38/omsi-from-the-river.jpg?w=700&h=500&s=1"
-  ${pkgs.feh}/bin/feh --bg-scale /tmp/background.jpg                           
-  '';
   services.flatpak.enable = true;
 
   # Adds flathub as flatpak package repository
@@ -69,11 +62,10 @@ in
   home-manager.users.ttc = { pkgs, ... }: {
     home.packages = with pkgs; [
       python311
-      chrome
-      googledrive
       prusa-slicer
     ];
     programs.bash.enable = true;
     home.stateVersion = "23.11";
   };
+  system.stateVersion = "23.11";
 }
