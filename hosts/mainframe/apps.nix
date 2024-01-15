@@ -38,6 +38,7 @@
     libreoffice
     virt-manager
     win-virtio
+    gparted
     bottles
     psmisc
     wine

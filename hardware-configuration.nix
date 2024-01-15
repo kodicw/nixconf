@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "uas" "sd_mod" ];
@@ -14,24 +15,26 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/6f647766-3400-4aa6-b1c6-57ba88c1db74";
+    {
+      device = "/dev/disk/by-uuid/6f647766-3400-4aa6-b1c6-57ba88c1db74";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/586C-E6CD";
+    {
+      device = "/dev/disk/by-uuid/586C-E6CD";
       fsType = "vfat";
     };
 
 
-  fileSystems."harold" =
-    { device = "/dev/disk/by-uuid/c74198f0-7e38-4cf1-99df-a08926182cc1";
+  fileSystems."/home/charles/Storage" =
+    {
+      device = "/dev/disk/by-uuid/c74198f0-7e38-4cf1-99df-a08926182cc1";
       fsType = "ext4";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/603a0a64-50a3-45c0-8ea6-a477857f0a9f"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/603a0a64-50a3-45c0-8ea6-a477857f0a9f"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -42,6 +45,6 @@
   # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

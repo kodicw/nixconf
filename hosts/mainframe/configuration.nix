@@ -9,8 +9,8 @@
       ./dev.nix
       # ./server.nix
       # ./remote.nix
-      ./odoo.nix
-      ./modules/pentesting/pentools.nix
+      # ./odoo.nix
+      # ./modules/pentesting/pentools.nix
       #./modules/servers/paperless.nix
     ];
   # Bootloader
