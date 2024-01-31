@@ -42,6 +42,9 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = true;
+  system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;

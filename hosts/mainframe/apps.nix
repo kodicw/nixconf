@@ -83,6 +83,7 @@
     nvtop
     prusa-slicer
     pywal
+    insomnia
     ];
 
     programs = {
