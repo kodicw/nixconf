@@ -1,0 +1,27 @@
+{ config, pkgs, ... }:
+{
+
+  environment.systemPackages = with pkgs; [
+    kitty # GPU accellerated Terminal.
+    helix
+    marksman # Text editor accesed with hx comes with sensible defaults and LSPs.
+    neovim # Best text editor.
+    zfxtop
+    zellij # Basically a rust based modern version of tmux.
+    # <-------- Charm.sh -------->
+    glow # Render markdown in the terminal.
+    skate
+    mods # Use AI to inturpret the output of a command and do stuff with it.
+    pop # Send emails from the terminal using resend API .
+    gum
+  ];
+  programs = {
+    fish = {
+      enable = true;
+      shellAbbrs = {
+        # Quick Nix
+        nx = "sudo nixos-rebuild switch";
+      };
+    };
+  };
+}
