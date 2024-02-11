@@ -20,6 +20,11 @@
         modules = [ ./hosts/mainframe/configuration.nix ];
       };
 
+      nixosConfigurations."node-nadia" = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs username system; };
+        modules = [ ./hosts/node-nadia/configuration.nix ];
+      };
+
       nixosConfigurations."ttc" = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs username system; };
         modules = [ ./hosts/ttc/configuration.nix ];
