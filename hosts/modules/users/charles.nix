@@ -7,7 +7,7 @@
         isNormalUser = true;
         useDefaultShell = true;
         description = "charles";
-        extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
+        extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "audio" "dialout"];
         packages = with pkgs; [
           swww
           vivaldi

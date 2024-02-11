@@ -8,6 +8,7 @@
       ../modules/network
       ../modules/packages
       ../modules/nvidia.nix
+      ../modules/servers/kasm.nix
     ];
   # Bootloader
   nix.settings.auto-optimise-store = true;
