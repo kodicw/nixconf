@@ -10,7 +10,6 @@
     zlib
     zip
     unzip
-    nerdfonts
     btop
     linuxPackages.nvidia_x11
     freeglut
