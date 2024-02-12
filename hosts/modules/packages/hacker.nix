@@ -25,6 +25,7 @@
       sqlalchemy
       ffmpeg-python
       openpyxl
+      google-api-python-client
       pyquery
       feedparser
       langchain
