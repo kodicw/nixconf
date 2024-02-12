@@ -12,7 +12,6 @@
     glow # Render markdown in the terminal.
     skate
     mods # Use AI to inturpret the output of a command and do stuff with it.
-    pop # Send emails from the terminal using resend API .
     gum
   ];
   programs = {

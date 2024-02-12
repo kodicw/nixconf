@@ -34,6 +34,7 @@
     ollama
     walk
     nvtop
+    pop # Send emails from the terminal using resend API .
     prusa-slicer
     pywal
     linuxKernel.packages.linux_6_6.rtl88x2bu
