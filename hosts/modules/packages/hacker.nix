@@ -4,6 +4,7 @@
     chromedriver
     postgresql
     git
+    cudatoolkit
     nim
     go
     rustup
@@ -16,6 +17,7 @@
     bun
     gopls
     mprocs
+    lazydocker
     (python311.withPackages (ps: with ps; [
       pandas
       requests

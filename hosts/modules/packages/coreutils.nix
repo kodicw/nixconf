@@ -12,7 +12,6 @@
     unzip
     nerdfonts
     btop
-    cudatoolkit
     linuxPackages.nvidia_x11
     freeglut
     pmutils

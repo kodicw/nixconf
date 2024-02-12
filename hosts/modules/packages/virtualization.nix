@@ -2,6 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     docker
+    lazydocker
     virt-manager
     win-virtio
   ];
