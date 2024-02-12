@@ -23,7 +23,5 @@
     libreoffice
     gparted
     psmisc
-    wine
-    bottles
   ];
 }

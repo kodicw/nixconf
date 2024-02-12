@@ -6,6 +6,7 @@
     ./hacker.nix
     ./picopython.nix
     ./gaming.nix
+    ./windows.nix
     ./coreutils.nix
     ./virtualization.nix
   ];
