@@ -34,6 +34,7 @@
     ollama
     walk
     nvtop
+    blender
     nerdfonts
     pop # Send emails from the terminal using resend API .
     prusa-slicer

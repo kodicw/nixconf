@@ -18,6 +18,7 @@
     gopls
     mprocs
     lazydocker
+    lazygit
     (python311.withPackages (ps: with ps; [
       pandas
       requests

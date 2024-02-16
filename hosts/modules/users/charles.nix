@@ -1,13 +1,13 @@
 { config, pkgs, ... }:
 {
   users = {
-    defaultUserShell = pkgs.nushell;
+    defaultUserShell = pkgs.nushellFull;
     users = {
       charles = {
         isNormalUser = true;
         useDefaultShell = true;
         description = "charles";
-        extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "audio" "dialout"];
+        extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "audio" "dialout" ];
         packages = with pkgs; [
           swww
           vivaldi

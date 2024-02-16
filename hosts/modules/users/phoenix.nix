@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   users = {
-    defaultUserShell = pkgs.nushell;
+    defaultUserShell = pkgs.nushellFull;
     users = {
       Phoenix = {
         isNormalUser = true;
