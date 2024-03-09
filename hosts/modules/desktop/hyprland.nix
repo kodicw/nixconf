@@ -22,6 +22,11 @@
     # Hyprland 
     polkit # for auth
     rofi # Application search bar
+    xwaylandvideobridge
+    xdg-desktop-portal
+    xdg-desktop-portal-kde
+    xdg-desktop-portal-wlr
+    xdg-desktop-portal-hyprland
   ];
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"

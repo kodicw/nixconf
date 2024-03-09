@@ -15,6 +15,8 @@
           instaloader
           vlc
           obs-studio
+	  mpv
+	  unityhub
         ];
       };
     };

@@ -8,6 +8,7 @@
     nim
     go
     rustup
+    piper-tts
     cargo
     zig
     ruff

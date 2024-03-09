@@ -12,9 +12,9 @@
       ./modules/networking
       ./modules/virtualization
       ../modules/desktop
-      ../modules/nvidia.nix
       ../modules/users/charles.nix
       ../modules/packages
+      ../modules/nvidia.nix
       ../modules/network/vpn.nix
       ../modules/network/tools.nix
     ];

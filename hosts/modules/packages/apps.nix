@@ -34,11 +34,13 @@
     ollama
     walk
     nvtop
+    discord
     blender
     nerdfonts
     pop # Send emails from the terminal using resend API .
     prusa-slicer
     pywal
+    burpsuite
     linuxKernel.packages.linux_6_6.rtl88x2bu
   ];
 
