@@ -9,6 +9,7 @@
       ../modules/packages/gaming.nix
       ../modules/packages/windows.nix
       ../modules/packages/audio.nix
+      ../modules/packages/sh.nix
       ../modules/packages/coreutils.nix
       ../modules/nvidia.nix
     ];
