@@ -47,14 +47,3 @@
       };
     };
 }
-
-  homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
-pkgs = import nixpkgs {
-inherit system;
-config.allowUnfree = true;
-};
-extraSpecialArgs = { inherit inputs username; };
-modules = [ ./home-manager/home.nix ];
-};
-};
-}
