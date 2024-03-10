@@ -1,3 +1,4 @@
+
 {
   description = "A very basic flake";
 
@@ -30,6 +31,11 @@
         modules = [ ./hosts/ttc/configuration.nix ];
       };
 
+      nixosConfigurations."angel" = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs username system; };
+        modules = [ ./hosts/angel/configuration.nix ];
+      };
+
 
       homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
@@ -40,4 +46,15 @@
         modules = [ ./home-manager/home.nix ];
       };
     };
+}
+
+  homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
+pkgs = import nixpkgs {
+inherit system;
+config.allowUnfree = true;
+};
+extraSpecialArgs = { inherit inputs username; };
+modules = [ ./home-manager/home.nix ];
+};
+};
 }
