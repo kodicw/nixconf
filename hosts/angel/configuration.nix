@@ -4,7 +4,7 @@
     [
       /etc/nixos/hardware-configuration.nix
       ../modules/users/angel.nix
-      ../modules/desktop/displaymanager.nix
+      ../modules/desktop
       ../modules/network
       ../modules/packages/gaming.nix
       ../modules/packages/windows.nix
@@ -26,8 +26,6 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
-  boot.loader.grub.theme = pkgs.nixos-grub2-theme;
-  boot.loader.efi.canTouchEfiVariables = true;
   boot.extraModulePackages = with config.boot.kernelPackages; [ rtl88x2bu ];
 
   # Networking
