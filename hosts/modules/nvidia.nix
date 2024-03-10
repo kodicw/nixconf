@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 {
   # Nvidia GPU drivers
+  environment.systemPackages = with pkgs; [
+    gwe
+  ];
   hardware.nvidia = {
     modesetting.enable = true;
     open = false;
