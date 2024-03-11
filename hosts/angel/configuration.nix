@@ -7,7 +7,7 @@
       ../modules/desktop
       ../modules/network
       ../modules/packages
-      ../modules/nvidia390.nix
+      ../modules/nvidia.nix
     ];
 
   users.users.angel = {
