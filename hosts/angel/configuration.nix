@@ -12,7 +12,7 @@
       ../modules/packages/gaming.nix
       ../modules/packages/windows.nix
       ../modules/packages/coreutils.nix
-      ../modules/nvidia.nix
+      ../modules/nvidialaptop.nix
     ];
 
   users.users.angel = {
