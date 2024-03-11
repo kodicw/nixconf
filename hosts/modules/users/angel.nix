@@ -3,9 +3,9 @@
   users = {
     defaultUserShell = pkgs.nushellFull;
     users = {
-      Angel = {
+      angel = {
         isNormalUser = true;
-        description = "Angel";
+        description = "angel";
         packages = with pkgs; [
           google-chrome
         ];
