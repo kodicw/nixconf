@@ -11,8 +11,13 @@
     open = false;
     nvidiaSettings = true;
     # powerManagement.enable = true;
+    prime = {
+      sync.enable = true;
+      nvidiaBusId = "PCI:1:0:0";
+      intelBusId = "PCI:0:2:0";
+    };
 
-    package = config.boot.kernelPackages.nvidiaPackages.legacy_390;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
   services.xserver.videoDrivers = [ "nvidia" ];
 }
