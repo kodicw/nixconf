@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
 {
+  programs.nh.enable = true;
+
   environment.systemPackages = with pkgs; [
     # <-------- Core -------->
     stdenv.cc
@@ -12,6 +14,7 @@
     unzip
     btop
     linuxPackages.nvidia_x11
+    ntfs3g
     freeglut
     pmutils
     xorg.libXi

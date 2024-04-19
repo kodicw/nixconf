@@ -18,6 +18,7 @@
   boot.loader.grub.theme = pkgs.nixos-grub2-theme;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.extraModulePackages = with config.boot.kernelPackages; [ rtl88x2bu ];
+  powerManagement.cpuFreqGovernor = "performance";
 
   # Networking
   networking.hostName = "mainframe";
@@ -64,7 +65,6 @@
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
-    xkbVariant = "";
   };
 
 
@@ -79,7 +79,6 @@
   services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "curses";
     enableSSHSupport = true;
   };
 

@@ -6,8 +6,8 @@
     helix
     marksman # Text editor accesed with hx comes with sensible defaults and LSPs.
     neovim # Best text editor.
-    zfxtop
     zellij # Basically a rust based modern version of tmux.
+    starship # Fancy prompt.
     # <-------- Charm.sh -------->
     glow # Render markdown in the terminal.
     skate

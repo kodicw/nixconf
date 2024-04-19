@@ -11,7 +11,6 @@
         packages = with pkgs; [
           swww
           vivaldi
-          shell_gpt
           pulsemixer
           starship
           google-chrome

@@ -38,16 +38,6 @@
       shodan
       openai
       python-lsp-server
-      (buildPythonPackage rec {
-        pname = "undetected-chromedriver";
-        version = "2.1.1";
-        src = fetchPypi {
-          inherit pname version;
-          sha256 = "sha256-YxWr8qTnglkhP1SwevCFscI0zu/U4gvuEmtb6cHQ7Wk=";
-        };
-        doCheck = false;
-      }
-      )
     ]))
   ];
 }
