@@ -4,7 +4,7 @@
     chromedriver
     postgresql
     git
-    cudatoolkit
+    # cudatoolkit
     nim
     go
     rustup

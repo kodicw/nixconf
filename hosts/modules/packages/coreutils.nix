@@ -17,14 +17,14 @@
     ntfs3g
     freeglut
     pmutils
-    xorg.libXi
-    xorg.libXmu
-    xorg.libXext
-    xorg.libX11
-    xorg.libXv
-    xorg.libXrandr
-    libreoffice
+    # xorg.libXi
+    # xorg.libXmu
+    # xorg.libXext
+    # xorg.libX11
+    # xorg.libXv
+    # xorg.libXrandr
     gparted
     psmisc
+    wl-clipboard
   ];
 }

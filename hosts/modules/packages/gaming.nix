@@ -8,9 +8,9 @@
     dedicatedServer.openFirewall = true;
   };
   environment.systemPackages = with pkgs; [
-    gamescope
     faudio
     protontricks
     winetricks
+    discord
   ];
 }

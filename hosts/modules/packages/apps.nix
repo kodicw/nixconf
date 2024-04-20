@@ -6,20 +6,16 @@
     [
       # <-------- Shell/Terminal -------->
       obsidian
+      libreoffice
       # <-------- Camera/Video/Audio  -------->
       gnome.nautilus
-      motion
-      ffmpeg
-      helvum
-      vlc
-      davinci-resolve
+      motion ffmpeg helvum vlc
       # <-------- Misc -------->
       neofetch
       rpi-imager
       swaynotificationcenter
       # <-------- Browser -------->
-      vivaldi
-      tor-browser-bundle-bin
+      vivaldi tor-browser-bundle-bin
       # <-------- File Shareing -------->
       sshfs
       # <-------- SSH/Remote -------->
@@ -28,22 +24,19 @@
       # <-------- Network Tools -------->
       nmap # Network swiss army knife
       # <-------- Secrets/Passwords -------->
-      bitwarden
-      pass
-      wl-clipboard
+      bitwarden pass
       # tests
       stacer
       home-manager
       ollama
-      walk
+      # walk
       nvtopPackages.full
-      discord
       blender
-      nerdfonts
+      nerdfonts #TODO override default font
       pop # Send emails from the terminal using resend API .
       prusa-slicer
       pywal
-      linuxKernel.packages.linux_6_6.rtl88x2bu
+      linuxKernel.packages.linux_6_6.rtl88x2bu # For Realtek 88x2bu wifi dongle
     ];
 
   environment.sessionVariables = {
