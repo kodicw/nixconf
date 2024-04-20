@@ -1,6 +1,6 @@
 {
   imports = [
-    ./n8n.nix
+    # ./n8n.nix
     # ./paper.nix
     ./soft-server-ssh.nix
     ./adguard.nix
