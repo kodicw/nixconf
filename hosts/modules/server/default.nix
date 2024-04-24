@@ -7,6 +7,7 @@
     ./ai.nix
     ./syncthing.nix
     ./photoprism.nix
+    ./octoprint.nix
     #./home-assistant.nix
   ];
 }

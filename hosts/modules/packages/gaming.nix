@@ -9,6 +9,7 @@
   };
   environment.systemPackages = with pkgs; [
     faudio
+    r2modman
     protontricks
     winetricks
     discord

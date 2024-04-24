@@ -4,4 +4,8 @@
     desktopManager.plasma5.enable = true;
   };
   services.displayManager.sddm.enable = true;
+  environment.systemPackages = with pkgs; [
+      cosmic-edit
+      cosmic-files
+  ];
 }

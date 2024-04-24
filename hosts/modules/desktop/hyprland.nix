@@ -20,6 +20,8 @@
   };
   environment.systemPackages = with pkgs; [
     # Hyprland 
+    hypridle
+    hyprlock
     polkit # for auth
     rofi # Application search bar
     xwaylandvideobridge

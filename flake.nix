@@ -1,7 +1,6 @@
 
 {
-  description = "A very basic flake";
-
+  description = "A simple config";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
