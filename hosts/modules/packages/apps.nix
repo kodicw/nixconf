@@ -28,6 +28,7 @@
       # tests
       stacer
       home-manager
+      rclone
       ollama
       # walk
       nvtopPackages.full

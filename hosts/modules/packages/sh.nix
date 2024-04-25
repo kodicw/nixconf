@@ -14,13 +14,4 @@
     mods # Use AI to inturpret the output of a command and do stuff with it.
     gum
   ];
-  programs = {
-    fish = {
-      enable = true;
-      shellAbbrs = {
-        # Quick Nix
-        nx = "sudo nixos-rebuild switch";
-      };
-    };
-  };
 }
