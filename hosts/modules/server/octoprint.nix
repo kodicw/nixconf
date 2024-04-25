@@ -2,6 +2,6 @@
 {
   services.octoprint = {
     enable = true;
-    port = 8083;
+    port = 8383;
     };
 }
