@@ -9,40 +9,51 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixvim, home-manager, nixpkgs }@inputs:
+  outputs = { 
+    self, 
+    nixvim,
+    home-manager, 
+    nixpkgs,
+    }@inputs:
     let
-      system = "x86_64-linux";
+      system = builtins.currentSystem;
       username = "charles";
+      nixosSystem = nixpkgs.lib.nixosSystem;
     in
     {
-      nixosConfigurations."mainframe" = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs username system; };
-        modules = [ ./hosts/mainframe/configuration.nix ];
+      nixosConfigurations = {
+
+        "mainframe" = nixosSystem {
+          specialArgs = { inherit inputs username system; };
+          modules = [ ./hosts/mainframe/configuration.nix ];
+        };
+
+        "node-nadia" = nixosSystem {
+          specialArgs = { inherit inputs username system; };
+          modules = [ ./hosts/node-nadia/configuration.nix ];
+        };
+
+        "ttc" = nixosSystem {
+          specialArgs = { inherit inputs username system; };
+          modules = [ ./hosts/ttc/configuration.nix ];
+        };
+
+        "angel" = nixosSystem {
+          specialArgs = { inherit inputs username system; };
+          modules = [ ./hosts/angel/configuration.nix ];
+        };
       };
 
-      nixosConfigurations."node-nadia" = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs username system; };
-        modules = [ ./hosts/node-nadia/configuration.nix ];
-      };
 
-      nixosConfigurations."ttc" = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs username system; };
-        modules = [ ./hosts/ttc/configuration.nix ];
-      };
-
-      nixosConfigurations."angel" = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs username system; };
-        modules = [ ./hosts/angel/configuration.nix ];
-      };
-
-
-      homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
+      homeConfigurations = {
+        "charles" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
           inherit system;
           config.allowUnfree = true;
+          };
+          extraSpecialArgs = { inherit inputs username; };
+          modules = [ ./home-manager/home.nix ];
         };
-        extraSpecialArgs = { inherit inputs username; };
-        modules = [ ./home-manager/home.nix ];
       };
     };
 }

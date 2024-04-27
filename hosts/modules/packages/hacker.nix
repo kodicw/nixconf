@@ -1,43 +1,53 @@
-{ config, pkgs, ... }:
-{
-  environment.systemPackages = with pkgs; [
+{ config, pkgs, lib, ... }:
+let 
+  javascript = with pkgs; [
+    bun
+  ];
+  cc = with pkgs; [
+    clang
+    gcc
+  ];
+
+  tools = with pkgs; [
+    git lazygit lazydocker 
     chromedriver
     postgresql
-    git
     # cudatoolkit
-    nim
-    go
-    rustup
-    piper-tts
-    cargo
-    zig
     ruff
-    gcc
-    clang
-    ruby
-    bun
+  ];
+  
+  golang = with pkgs; [
+    go
     gopls
-    mprocs
-    lazydocker
-    lazygit
+  ];
+
+  learningLanguages = with pkgs; [
+    rustup cargo rust-analyzer
+    ruby zig
+  ];
+
+  ython = with pkgs; [
     (python311.withPackages (ps: with ps; [
-      pandas
-      requests
-      flask
-      pillow
-      selenium
-      sqlalchemy
-      ffmpeg-python
-      openpyxl
-      google-api-python-client
-      pyquery
-      feedparser
-      langchain
-      beautifulsoup4
-      rich
-      shodan
-      openai
+      pandas pillow requests flask
+      selenium sqlalchemy ffmpeg-python
+      openpyxl google-api-python-client
+      pyquery feedparser langchain
+      beautifulsoup4 rich shodan openai
       python-lsp-server
     ]))
   ];
+in
+{
+  options = {
+    hacker.enable = lib.mkEnableOption "";
+  };
+  config = lib.mkIf config.hacker.enable {
+    environment.systemPackages = 
+      javascript ++ 
+      cc ++ 
+      tools ++ 
+      golang ++ 
+      learningLanguages ++ 
+      ython;
+    };
 }

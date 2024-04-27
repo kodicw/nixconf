@@ -1,17 +1,26 @@
-{ config, pkgs, ... }:
-{
-  programs.gamemode.enable = true;
-  programs.gamescope.enable = true;
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-  };
-  environment.systemPackages = with pkgs; [
-    faudio
-    r2modman
-    protontricks
-    winetricks
+{ config, pkgs, lib, ... }:
+let
+  gameApps = with pkgs; [
     discord
+    protontricks winetricks
+    faudio r2modman
+    wine bottles
   ];
+in
+{
+  options = {
+    gaming.enable = lib.mkEnableOption "Add packages for gaming on linux";
+  };
+  config = lib.mkIf config.gaming.enable {
+    programs = {
+      gamemode.enable = true;
+      gamescope.enable = true;
+        steam = {
+          enable = true;
+          remotePlay.openFirewall = true;
+          dedicatedServer.openFirewall = true;
+        };
+    };
+    environment.systemPackages = gameApps;
+  };
 }
