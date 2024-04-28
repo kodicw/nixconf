@@ -6,12 +6,7 @@
       ../modules/users/angel.nix
       ../modules/desktop
       ../modules/network
-      ../modules/packages/sh.nix
-      ../modules/packages/apps.nix
-      ../modules/packages/audio.nix
-      ../modules/packages/gaming.nix
-      ../modules/packages/windows.nix
-      ../modules/packages/coreutils.nix
+      ../modules/packages
       ../modules/nvidialaptop.nix
     ];
 
