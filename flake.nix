@@ -13,7 +13,7 @@
   outputs = { 
     self, 
     nixvim,
-    home-manager, 
+    # home-manager, 
     nixpkgs,
     nix-software-center,
     stylix,
