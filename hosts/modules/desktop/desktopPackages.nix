@@ -1,8 +1,9 @@
-{config, pkgs, ...}:
+{config, pkgs, inputs, system, ...}:
 let
   office = with pkgs; [
     libreoffice obsidian
-    bitwarden orca-slicer
+    bitwarden prusa-slicer
+    inputs.nix-software-center.packages.${system}.nix-software-center
   ];
 
   multimediaTools = with pkgs; [
@@ -29,6 +30,10 @@ let
   ];
 in
 {
+  services = {
+    cron.enable = true;
+    printing.enable = true;
+  };
   environment.systemPackages = 
     office ++ 
     terminal ++ 

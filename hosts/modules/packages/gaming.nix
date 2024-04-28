@@ -12,6 +12,7 @@ in
     gaming.enable = lib.mkEnableOption "Add packages for gaming on linux";
   };
   config = lib.mkIf config.gaming.enable {
+    services.hardware.openrgb.enable = true;
     programs = {
       gamemode.enable = true;
       gamescope.enable = true;
