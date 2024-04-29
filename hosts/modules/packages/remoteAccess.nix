@@ -8,7 +8,7 @@
       enable = true;
       settings.PasswordAuthentication = false;
       settings.KbdInteractiveAuthentication = false;
-      settings.PermitRootLogin = "no";
+      # settings.PermitRootLogin = "no";
     };
     programs.mosh.enable = true;
     environment.systemPackages = with pkgs; [sshfs] ;

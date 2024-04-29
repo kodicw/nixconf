@@ -4,27 +4,49 @@
   lib,
   system,
   inputs,
-  stylix,
   ... }:
 {
   imports = [
     /etc/nixos/hardware-configuration.nix
     ../modules/desktop
     ../modules/packages
+    ./stylix.nix
+    <nixpkgs/nixos/modules/virtualisation/qemu-vm.nix>
   ];
-  networking.hostName = "TTC";
-  networking.networkmanager.enable = true;
-  stylix = {
-    wallpaper = lib.stylix.types.wallpaper.from.image {
-      file = ./resources/omsi.jpg;
-      polarity = "dark";
+  gaming.enable = false;
+  hyprlandDesktop.enable = false;
+  hacker.enable = false;
+  services.displayManager.sddm.theme = "${import ./sddm-theme.nix {inherit pkgs; }}";
+
+  nix = {
+    gc.automatic = true;
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
     };
   };
 
-  services.flatpak.enable = true;
-  services.kasmweb.enable = true;
+  system.autoUpgrade = { 
+    enable = true;
+    allowReboot = true;
+    channel = "https://nixos.org/channels/nixos-unstable";
+  };
 
-  # Adds flathub as flatpak package repository
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+  };
+  
+  networking.hostName = "TTC";
+
+  services.flatpak.enable = true;
+  virtualisation.memorySize = 8192;
+  virtualisation.cores = 4;
+
+
+  programs.dconf.enable = true;
   nixpkgs.config = {
     flatpak.flathub = true;
   };
@@ -32,6 +54,9 @@
     inputs.nix-software-center.packages.${system}.nix-software-center
   ];
 
-  users.users.ttc.isNormalUser = true;
-  system.stateVersion = "23.11";
+  users.users.ttc = {
+    isNormalUser = true;
+    initialPassword = "ttc";
+  };
+  system.stateVersion = "23.05";
 }

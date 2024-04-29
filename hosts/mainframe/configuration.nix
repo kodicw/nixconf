@@ -27,9 +27,12 @@
     networkmanager.enable = true;
   };
 
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true;
-  system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
+  system.autoUpgrade = { 
+    enable = true;
+    allowReboot = true;
+    channel = "https://nixos.org/channels/nixos-unstable";
+  };
+
 
 
   programs.gnupg.agent = {

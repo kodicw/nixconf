@@ -5,15 +5,15 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-software-center.url = "github:snowfallorg/nix-software-center";
     nixvim.url = "github:nix-community/nixvim";
-    # home-manager.url = "github:nix-community/home-manager";
-    # home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
   };
 
   outputs = { 
     self, 
     nixvim,
-    # home-manager, 
+    home-manager, 
     nixpkgs,
     nix-software-center,
     stylix,
@@ -40,7 +40,13 @@
           specialArgs = { inherit inputs username system; };
           modules = [ 
             ./hosts/ttc/configuration.nix
-            stylix.nixosModules.stylix
+             stylix.nixosModules.stylix
+             home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.ttc = import ./hosts/ttc/home.nix;
+          }
           ];
         };
 
@@ -51,15 +57,15 @@
       };
 
 
-      # homeConfigurations = {
-      #   "charles" = home-manager.lib.homeManagerConfiguration {
-      #     pkgs = import nixpkgs {
-      #     inherit system;
-      #     config.allowUnfree = true;
-      #     };
-      #     extraSpecialArgs = { inherit inputs username; };
-      #     modules = [ ./home-manager/home.nix ];
-      #   };
-      # };
+      homeConfigurations = {
+        "charles" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          };
+          extraSpecialArgs = { inherit inputs username; };
+          modules = [ ./home-manager/home.nix ];
+        };
+      };
     };
 }
