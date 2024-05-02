@@ -2,14 +2,14 @@
 {
   imports =
     [
-      /etc/nixos/hardware-configuration.nix
+      ./hardware-configuration.nix
       ../modules/server
       ./modules/networking
       ../modules/desktop
       ../modules/users/charles.nix
       ../modules/packages
       ../modules/nvidia.nix
-    <nixpkgs/nixos/modules/virtualisation/qemu-vm.nix>
+    # <nixpkgs/nixos/modules/virtualisation/qemu-vm.nix>
     ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
