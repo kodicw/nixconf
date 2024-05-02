@@ -1,12 +1,13 @@
 { config, pkgs, ... }:
 let
-  user = "charles";
+  userName = "charles";
 in
 {
   services = {
     syncthing = {
+      openDefaultPorts= true;
       enable = true;
-      user = "charles";
+      user = userName;
     };
   };
 }

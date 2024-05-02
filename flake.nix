@@ -35,7 +35,7 @@
           specialArgs = { inherit inputs username system; };
           modules = [ ./hosts/node-nadia/configuration.nix ];
         };
-
+        
         "ttc" = nixosSystem {
           specialArgs = { inherit inputs username system; };
           modules = [ 

@@ -6,6 +6,7 @@
       charles = {
         isNormalUser = true;
         useDefaultShell = true;
+        initialPassword = "password";
         description = "charles";
         extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "audio" "dialout" ];
         packages = with pkgs; [
