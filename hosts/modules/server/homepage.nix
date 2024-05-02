@@ -2,7 +2,7 @@
 {
   services.homepage-dashboard = {
     enable = true;
-    port = 8080;
+    listenPort = 8080;
     bookmarks = [
       {
       name = "NixOS";
