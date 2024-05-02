@@ -5,5 +5,5 @@
     ./displaymanager.nix
     ./desktopPackages.nix
   ];
-  # hyprlandDesktop.enable = lib.mkDefault true;
+  hyprlandDesktop.enable = lib.mkDefault true;
 }

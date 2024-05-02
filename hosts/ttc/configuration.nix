@@ -8,13 +8,13 @@
 {
   imports = [
     /etc/nixos/hardware-configuration.nix
-    ../modules/desktop
+    # ../modules/desktop
     ../modules/packages
     ./stylix.nix
     <nixpkgs/nixos/modules/virtualisation/qemu-vm.nix>
   ];
   gaming.enable = false;
-  hyprlandDesktop.enable = false;
+  # hyprlandDesktop.enable = false;
   hacker.enable = false;
   services.displayManager.sddm.theme = "${import ./sddm-theme.nix {inherit pkgs; }}";
 
@@ -39,6 +39,11 @@
     efiSupport = true;
   };
   
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
   networking.hostName = "TTC";
 
   services.flatpak.enable = true;
@@ -52,6 +57,7 @@
   };
   environment.systemPackages = [
     inputs.nix-software-center.packages.${system}.nix-software-center
+    pkgs.sddm-kcm
   ];
 
   users.users.ttc = {

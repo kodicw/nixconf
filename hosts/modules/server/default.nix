@@ -8,6 +8,7 @@
     ./syncthing.nix
     ./photoprism.nix
     ./octoprint.nix
+    ./homepage.nix
     #./home-assistant.nix
   ];
 }

@@ -42,6 +42,10 @@ in
 
   programs = {
     nh.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
   	
   environment.variables = {

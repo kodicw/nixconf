@@ -1,9 +1,10 @@
-{config, lib, pkgs, ...}:
+{config, pkgs, ...}:
 let
   devEnvironment = with pkgs; [
     vscode
     minicom
     thonny
+    cura
   ];
   programingLanguages = with pkgs; [
     clang

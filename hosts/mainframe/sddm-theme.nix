@@ -1,11 +1,11 @@
 { pkgs }:
 
 let
-  imgLink = "https://portlandlivingonthecheap.com/lotc-cms/wp-content/uploads/2022/08/omsi-inside-e1659579181235.jpg";
+  imgLink = "https://w.wallhaven.cc/full/o5/wallhaven-o5ezel.jpg";
 
   image = pkgs.fetchurl {
     url = imgLink;
-    sha256 = "sha256-n+Cs+PM4xm3RzBL9s8PTONxNk/kO9Euy6BfVkEJvPK4=";
+    sha256 = "sha256-Lzle/UorkW3wS56cD8YB9XCHYBdi1TXxqZeEcXmwfmc=";
   };
 in
   pkgs.stdenv.mkDerivation {
@@ -22,5 +22,6 @@ in
     cd $out/components/artwork
     rm background.jpg
     cp -r ${image} $out/components/artwork/background.jpg
+      
    '';
 }

@@ -18,8 +18,18 @@
     };
   };
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    efi = {
+    # efiSysMountPoint = "/boot/efi";
+  };
+    grub = {
+      enable = true;
+      efiSupport = true;
+      device = "nodev";
+      useOSProber = true;
+      theme =  "${import ./fallout-grub-theme.nix {inherit pkgs;}}";
+    };
+  };
 
   # Networking
   networking = {
@@ -27,18 +37,13 @@
     networkmanager.enable = true;
   };
 
+  # Auto updates
   system.autoUpgrade = { 
     enable = true;
     allowReboot = true;
     channel = "https://nixos.org/channels/nixos-unstable";
   };
 
-
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
 
   system.stateVersion = "23.05";
 } 
