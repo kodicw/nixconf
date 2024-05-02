@@ -12,8 +12,6 @@
     <nixpkgs/nixos/modules/virtualisation/qemu-vm.nix>
     ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  virtualisation.memorySize = 8192;
-  virtualisation.cores = 4;
 
   boot.loader = {
     grub.enable = true;
