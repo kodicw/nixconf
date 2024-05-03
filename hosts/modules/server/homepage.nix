@@ -33,6 +33,16 @@
               href = "http://node-nadia:8000";
               description = "Adguard Home";
             };
+            Octoprint = {
+              icon = "octoprint.png";
+              href = "http://node-nadia:8383";
+              description = "Octoprint";
+            };
+            Kitchenowl = {
+              icon = "kitchenowl.png";
+              href = "http://kitchen";
+              description = "Kitchenowl";
+            };
           }
         ];
       }
