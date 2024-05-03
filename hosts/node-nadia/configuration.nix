@@ -5,7 +5,7 @@
       ./hardware-configuration.nix
       ../modules/server
       ./modules/networking
-      ../modules/desktop
+      # ../modules/desktop
       ../modules/users/charles.nix
       ../modules/packages
       ../modules/nvidia.nix
