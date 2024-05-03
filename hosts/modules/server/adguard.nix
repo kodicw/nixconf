@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 {
-  # environment.systemPackages = with pkgs; [
-  #   adguardian
-  # ];
+  environment.systemPackages = with pkgs; [
+    adguardian
+  ];
   services.adguardhome = {
     enable = true;
     mutableSettings = true;
