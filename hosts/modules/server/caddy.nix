@@ -4,9 +4,9 @@
     enable = true;
     email = "kodicw@gmail.com";
     virtualHosts = {
-      "virtualpotato.org:80" = {
+      "virtualpotato.org" = {
         extraConfig = ''
-        reverse_proxy 127.0.0.1:8082
+        reverse_proxy http://100.103.153.25:8082
           '';
       };
     };
