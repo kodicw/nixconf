@@ -11,7 +11,6 @@
     # ../modules/desktop
     ../modules/packages
     ./stylix.nix
-    <nixpkgs/nixos/modules/virtualisation/qemu-vm.nix>
   ];
   gaming.enable = false;
   # hyprlandDesktop.enable = false;
@@ -47,8 +46,6 @@
   networking.hostName = "TTC";
 
   services.flatpak.enable = true;
-  virtualisation.memorySize = 8192;
-  virtualisation.cores = 4;
 
 
   programs.dconf.enable = true;

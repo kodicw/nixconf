@@ -50,6 +50,25 @@
           ];
         };
 
+        "ttc-vm" = nixosSystem {
+          specialArgs = { inherit inputs username system; };
+          modules = [
+            ./hosts/ttc/configuration.nix
+
+            <nixpkgs/nixos/modules/virtualisation/qemu-vm.nix>
+            stylix.nixosModules.stylix
+            home-manager.nixosModules.home-manager
+            {
+              virtualisation.memorySize = 8192;
+              virtualisation.cores = 4;
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.ttc = import ./hosts/ttc/home.nix;
+            }
+          ];
+        };
+
+
         "angel" = nixosSystem {
           specialArgs = { inherit inputs username system; };
           modules = [ ./hosts/angel/configuration.nix ];
