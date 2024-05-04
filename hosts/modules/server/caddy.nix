@@ -4,7 +4,7 @@
     enable = true;
     email = "kodicw@gmail.com";
     virtualHosts = {
-      "virtualpotato.com" = {
+      "virtualpotato.org" = {
         extraConfig = ''
         reverse_proxy 127.0.0.1:8082
           '';
