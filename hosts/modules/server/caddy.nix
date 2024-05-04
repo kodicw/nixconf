@@ -6,7 +6,7 @@
     virtualHosts = {
       "virtualpotato.org" = {
         extraConfig = ''
-        reverse_proxy http://100.103.153.25:8082
+        reverse_proxy :8082
           '';
       };
     };
