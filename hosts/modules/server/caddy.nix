@@ -4,14 +4,9 @@
     enable = true;
     email = "kodicw@gmail.com";
     virtualHosts = {
-      "node-nadia:80" = {
+      "node-nadia.tail6e9f.ts.net" = {
         extraConfig = ''
-        reverse_proxy 100.103.153.25:8082
-          '';
-      };
-      "100.103.153.25" = {
-        extraConfig = ''
-        reverse_proxy 100.103.153.25:8082
+        reverse_proxy node-nadia:8082
           '';
       };
     };
