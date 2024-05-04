@@ -1,7 +1,7 @@
-{config, pkgs, ...}:
+{ config, pkgs, ... }:
 {
   environment.etc."pass".text = "temp";
-  
+
   services.paperless = {
     enable = true;
     address = "0.0.0.0";

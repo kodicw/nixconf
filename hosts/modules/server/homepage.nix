@@ -23,80 +23,80 @@
         };
       }
     ];
-    services = 
-    [
-      {
-        "Node-Nadia" = [
-          {
-            Adguard = {
-              icon = "adguard-home.png";
-              href = "http://node-nadia:8000";
-              description = "Adguard Home";
-            };
-          }
-          {
-            Octoprint = {
-              icon = "octoprint.png";
-              href = "http://node-nadia:8383";
-              description = "Octoprint";
-            };
-          }
-          {
-            Kitchenowl = {
-              icon = "kitchenowl.png";
-              href = "http://kitchen";
-              description = "Kitchenowl";
-            };
-          }
-        ];
-      }
-    ];
-    bookmarks = 
-    [
-      {
-        Development = [
-          {
-            NixOS = [
+    services =
+      [
+        {
+          "Node-Nadia" = [
             {
-              icon = "https://nixos.org/_astro/flake-blue.Bf2X2kC4_Z1yqDoT.svg";
-              abbr = "NX";
-              href = "https://nixos.org";
+              Adguard = {
+                icon = "adguard-home.png";
+                href = "http://node-nadia:8000";
+                description = "Adguard Home";
+              };
             }
-            ];
-          }
-          {
-            GitHub = [
             {
-              icon = "github.png";
-              abbr = "GH";
-              href = "https://github.com";
+              Octoprint = {
+                icon = "octoprint.png";
+                href = "http://node-nadia:8383";
+                description = "Octoprint";
+              };
             }
-            ];
-          }
-        ];
-      }
-      {
-        Entertainment = [
-          {
-            YouTube = [
             {
-              icon = "https://www.youtube.com/s/desktop/9660ea89/img/favicon.ico";
-              abbr = "YT";
-              href = "https://youtube.com";
+              Kitchenowl = {
+                icon = "kitchenowl.png";
+                href = "http://kitchen";
+                description = "Kitchenowl";
+              };
             }
-            ];
-          }
-          {
-            Reddit = [
+          ];
+        }
+      ];
+    bookmarks =
+      [
+        {
+          Development = [
             {
-              icon = "https://www.redditstatic.com/shreddit/assets/favicon/64x64.png";
-              abbr = "RD";
-              href = "https://reddit.com";
+              NixOS = [
+                {
+                  icon = "https://nixos.org/_astro/flake-blue.Bf2X2kC4_Z1yqDoT.svg";
+                  abbr = "NX";
+                  href = "https://nixos.org";
+                }
+              ];
             }
-            ];
-          }
-        ];
-      }    
-    ];  
+            {
+              GitHub = [
+                {
+                  icon = "github.png";
+                  abbr = "GH";
+                  href = "https://github.com";
+                }
+              ];
+            }
+          ];
+        }
+        {
+          Entertainment = [
+            {
+              YouTube = [
+                {
+                  icon = "https://www.youtube.com/s/desktop/9660ea89/img/favicon.ico";
+                  abbr = "YT";
+                  href = "https://youtube.com";
+                }
+              ];
+            }
+            {
+              Reddit = [
+                {
+                  icon = "https://www.redditstatic.com/shreddit/assets/favicon/64x64.png";
+                  abbr = "RD";
+                  href = "https://reddit.com";
+                }
+              ];
+            }
+          ];
+        }
+      ];
   };
 }

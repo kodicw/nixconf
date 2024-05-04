@@ -4,6 +4,7 @@
     [
       /etc/nixos/hardware-configuration.nix
       ../modules/users
+      ../modules/server/nextcloud.nix
       ../modules/desktop
       ../modules/network
       ../modules/packages

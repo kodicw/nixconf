@@ -5,7 +5,7 @@ in
 {
   services = {
     syncthing = {
-      openDefaultPorts= true;
+      openDefaultPorts = true;
       enable = true;
       user = userName;
     };

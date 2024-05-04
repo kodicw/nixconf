@@ -1,4 +1,3 @@
-
 {
   description = "A simple config";
   inputs = {
@@ -10,13 +9,14 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = { 
-    self, 
-    nixvim,
-    home-manager, 
-    nixpkgs,
-    nix-software-center,
-    stylix,
+  outputs =
+    { self
+    , nixvim
+    , home-manager
+    , nixpkgs
+    , nix-software-center
+    , stylix
+    ,
     }@inputs:
     let
       system = builtins.currentSystem;
@@ -35,18 +35,18 @@
           specialArgs = { inherit inputs username system; };
           modules = [ ./hosts/node-nadia/configuration.nix ];
         };
-        
+
         "ttc" = nixosSystem {
           specialArgs = { inherit inputs username system; };
-          modules = [ 
+          modules = [
             ./hosts/ttc/configuration.nix
-             stylix.nixosModules.stylix
-             home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.ttc = import ./hosts/ttc/home.nix;
-          }
+            stylix.nixosModules.stylix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.ttc = import ./hosts/ttc/home.nix;
+            }
           ];
         };
 
@@ -60,8 +60,8 @@
       homeConfigurations = {
         "charles" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
+            inherit system;
+            config.allowUnfree = true;
           };
           extraSpecialArgs = { inherit inputs username; };
           modules = [ ./home-manager/home.nix ];
