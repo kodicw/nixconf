@@ -4,8 +4,8 @@
     # ./paper.nix
     ./soft-server-ssh.nix
     ./adguard.nix
-    ./caddy.nix
     ./ai.nix
+    ./nginx.nix
     ./syncthing.nix
     ./photoprism.nix
     ./octoprint.nix
