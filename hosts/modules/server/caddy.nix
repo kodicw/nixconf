@@ -4,9 +4,9 @@
     enable = true;
     email = "kodicw@gmail.com";
     virtualHosts = {
-      "node-nadia" = {
+      "192.168.1.12" = {
         extraConfig = ''
-        reverse_proxy 100.103.153.25:8082
+        reverse_proxy 192.168.1.12:8082
           '';
       };
     };
