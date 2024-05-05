@@ -5,7 +5,7 @@
     globalConfig = ''
       get_certificate tailscale
     '';
-    virtualHosts."node-nadia" = {
+    virtualHosts."node-nadia.tail6e9f.ts.net" = {
       extraConfig = ''
         reverse_proxy localhost:8082
         '';
