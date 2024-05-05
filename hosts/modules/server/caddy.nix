@@ -4,7 +4,7 @@
     enable = true;
     email = "kodicw@gmail.com";
     virtualHosts = {
-      "virtualpotato.org" = {
+      "node-nadia" = {
         extraConfig = ''
         reverse_proxy 100.103.153.25:8082
           '';
