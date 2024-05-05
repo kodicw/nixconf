@@ -1,18 +1,25 @@
-{conifg, pkgs, ...}:
+{ config, ...}:
 {
-  services.traefik = {
-    enable = true;
+  services.nginx.virtualHosts."virtualpotato.org" = {
+    forceSSL = true;
+    enableACME = true;
+    locations."/" = {
+        proxyPass = "http://127.0.0.1:8081";
+        proxyWebsockets = true; # needed if you need to use WebSocket
+        extraConfig =
+          # required when the target is also TLS server with multiple hosts
+          "proxy_ssl_server_name on;" +
+          # required when the server wants to use HTTP Authentication
+          "proxy_pass_header Authorization;"
+          ;
   };
-  # services.caddy = {
-  #   enable = true;
-  #   email = "kodicw@gmail.com";
-  #   virtualHosts = {
-  #     "virtualpotato.org" = {
-  #       extraConfig = ''
-  #       reverse_proxy 192.168.1.12:8082
-  #         '';
-  #     };
-  #   };
-  # };
-  # networking.firewall.allowedTCPPorts = [ 443 80];
-}
+};
+  
+
+  security.acme = {
+    acceptTerms = true;
+    certs = {
+      "virtualpotato.org".email = "kodicw@gmail.com";
+    };
+  };
+ }
