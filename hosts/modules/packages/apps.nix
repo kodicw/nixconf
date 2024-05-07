@@ -6,13 +6,15 @@ let
   ];
 	
   systemCustomization = with pkgs; [
-    nerdfonts
+    (nerdfonts.override {fonts = [ "BigBlueTerm"];})
   ];
 	
   utilities = with pkgs; [
     home-manager
+    nixos-anywhere
     rclone
     nurl
+    git
   ];
 
   cli = with pkgs; [

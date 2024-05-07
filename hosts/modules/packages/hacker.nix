@@ -9,7 +9,7 @@ let
   ];
 
   tools = with pkgs; [
-    git lazygit lazydocker 
+    lazygit lazydocker 
     chromedriver
     postgresql
     # cudatoolkit

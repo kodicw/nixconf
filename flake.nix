@@ -7,6 +7,8 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -16,7 +18,7 @@
     , nixpkgs
     , nix-software-center
     , stylix
-    ,
+    , disko
     }@inputs:
     let
       system = builtins.currentSystem;
@@ -67,6 +69,14 @@
             }
           ];
         };
+
+       "nix-anywhere" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./hosts/nix-anywhere/configuration.nix
+        ];
+      };
 
 
         "angel" = nixosSystem {
