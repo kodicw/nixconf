@@ -6,7 +6,7 @@ let
   ];
 	
   systemCustomization = with pkgs; [
-    (nerdfonts.override {fonts = [ "BigBlueTerm"];})
+    (nerdfonts.override {fonts = ["BigBlueTerm"];})
   ];
 	
   utilities = with pkgs; [
