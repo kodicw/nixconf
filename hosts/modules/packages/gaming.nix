@@ -5,6 +5,7 @@ let
     protontricks winetricks
     faudio r2modman
     wine bottles
+    steamtinkerlaunch
   ];
 in
 {

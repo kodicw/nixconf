@@ -2,7 +2,6 @@
 { config, pkgs, lib, ... }:
 let
   systemMonitoring = with pkgs; [
-    nvtopPackages.full
     btop neofetch
   ];
 	

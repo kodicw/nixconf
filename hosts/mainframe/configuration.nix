@@ -21,7 +21,7 @@
 
   boot.loader = {
     efi = {
-    # efiSysMountPoint = "/boot/efi";
+    efiSysMountPoint = "/boot/efi";
   };
     grub = {
       enable = true;
