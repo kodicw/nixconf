@@ -10,7 +10,6 @@
         description = "charles";
         extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "audio" "dialout" ];
         packages = with pkgs; [
-          google-chrome
 	  starship
         ];
         openssh.authorizedKeys.keys = [
