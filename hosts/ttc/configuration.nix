@@ -27,6 +27,7 @@
       auto-optimise-store = true;
     };
   };
+
    home-manager.useGlobalPkgs = true;
    home-manager.useUserPackages = true;
    home-manager.users.ttc = import ./hosts/ttc/home.nix;
