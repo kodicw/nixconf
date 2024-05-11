@@ -5,8 +5,8 @@
     ./soft-server-ssh.nix
     ./adguard.nix
     ./ai.nix
-    ./nginx.nix
-    ./syncthing.nix
+    # ./nginx.nix
+    # ./syncthing.nix
     ./photoprism.nix
     ./octoprint.nix
     ./homepage.nix

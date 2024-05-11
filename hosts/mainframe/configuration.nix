@@ -4,10 +4,9 @@
     [
       /etc/nixos/hardware-configuration.nix
       ../modules/users
-      ../modules/server/nextcloud.nix
       ../modules/desktop
-      ../modules/network
       ../modules/packages
+      ../modules/network
       ../modules/nvidia.nix
     ];
 
@@ -23,6 +22,7 @@
     efi = {
     efiSysMountPoint = "/boot/efi";
   };
+
     grub = {
       enable = true;
       efiSupport = true;
@@ -38,12 +38,16 @@
     networkmanager.enable = true;
   };
 
+
   # Auto updates
   system.autoUpgrade = { 
     enable = true;
     allowReboot = true;
     channel = "https://nixos.org/channels/nixos-unstable";
   };
+  environment.variables = {
+    FLAKE = "/etc/nixos/";
+    };
 
 
   system.stateVersion = "23.05";

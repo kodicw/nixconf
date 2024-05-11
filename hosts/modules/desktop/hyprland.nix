@@ -28,6 +28,7 @@
       hyprlock
       polkit # for auth
       rofi # Application search bar
+      wl-clipboard
       xwaylandvideobridge
       xdg-desktop-portal
       xdg-desktop-portal-kde

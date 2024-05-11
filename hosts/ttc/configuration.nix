@@ -11,10 +11,13 @@
     # ../modules/desktop
     ../modules/packages
     ./stylix.nix
+    inputs.stylix.nixosModules.stylix
+    inputs.home-manager.nixosModules.home-manager
   ];
-  gaming.enable = false;
+  myGaming.enable = false;
   # hyprlandDesktop.enable = false;
   hacker.enable = false;
+
   services.displayManager.sddm.theme = "${import ./sddm-theme.nix {inherit pkgs; }}";
 
   nix = {
@@ -24,6 +27,9 @@
       auto-optimise-store = true;
     };
   };
+   home-manager.useGlobalPkgs = true;
+   home-manager.useUserPackages = true;
+   home-manager.users.ttc = import ./hosts/ttc/home.nix;
 
   system.autoUpgrade = { 
     enable = true;

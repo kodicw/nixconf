@@ -8,7 +8,7 @@
     ./virtualization.nix
     ./remoteAccess.nix
   ];
-  gaming.enable = lib.mkDefault true;
+  myGaming.enable = lib.mkDefault true;
   remoteAccess.enable = lib.mkDefault true;
   hacker.enable = lib.mkDefault true;
 }

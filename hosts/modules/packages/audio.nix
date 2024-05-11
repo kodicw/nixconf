@@ -10,6 +10,7 @@
   };
   environment.systemPackages = with pkgs; [
     pavucontrol
+    pulsemixer # A CLI mixer for PulseAudio
   ];
   hardware.pulseaudio.enable = false;
 }

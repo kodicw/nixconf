@@ -6,27 +6,37 @@ let
   ];
 	
   systemCustomization = with pkgs; [
-    (nerdfonts.override {fonts = ["BigBlueTerm"];})
+    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
   ];
 	
-  utilities = with pkgs; [
-    home-manager
-    nixos-anywhere
-    rclone
-    nurl
-    git
-  ];
+  #TODO split nix tools apart and only build for mainframee?
+  utilities =
+   if config.networking.hostName == "mainframe" then
+    [
+      pkgs.home-manager
+      pkgs.nixos-anywhere
+      pkgs.onefetch
+      pkgs.rclone
+      pkgs.nurl
+      pkgs.colmena # for remote systems
+    ] else [];
+      
 
-  cli = with pkgs; [
-    helix neovim 
-    marksman zellij starship
-  ];
+  cli =
+   if config.networking.hostName == "mainframe" then
+    [
+      pkgs.helix 
+      pkgs.neovim 
+      # pkgs.marksman
+      pkgs.zellij 
+      pkgs.starship
+    ] else [pkgs.helix];
 
   core = with pkgs; [
     binutils ncurses5
     zip unzip freeglut
     gparted ntfs3g
-    wl-clipboard
+    git
   ];
 in
 {
@@ -51,6 +61,7 @@ in
   	
   environment.variables = {
     EDITOR = "nvim";
+
   };
 
   # Set your time zone.

@@ -40,34 +40,7 @@
 
         "ttc" = nixosSystem {
           specialArgs = { inherit inputs username system; };
-          modules = [
-            ./hosts/ttc/configuration.nix
-            stylix.nixosModules.stylix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.ttc = import ./hosts/ttc/home.nix;
-            }
-          ];
-        };
-
-        "ttc-vm" = nixosSystem {
-          specialArgs = { inherit inputs username system; };
-          modules = [
-            ./hosts/ttc/configuration.nix
-
-            <nixpkgs/nixos/modules/virtualisation/qemu-vm.nix>
-            stylix.nixosModules.stylix
-            home-manager.nixosModules.home-manager
-            {
-              virtualisation.memorySize = 8192;
-              virtualisation.cores = 4;
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.ttc = import ./hosts/ttc/home.nix;
-            }
-          ];
+          modules = [./hosts/ttc/configuration.nix];
         };
 
        "nix-anywhere" = nixpkgs.lib.nixosSystem {
@@ -84,6 +57,21 @@
           modules = [ ./hosts/angel/configuration.nix ];
         };
       };
+
+      colmena = {
+        meta = {
+          nixpkgs = import nixpkgs {
+          system = "x86_64-linux";
+          };
+        };
+        node-nadia = {
+          deployment = {
+            targetHost = "node-nadia";
+          };
+          imports = [./hosts/node-nadia/configuration.nix];
+        };
+      };
+            
 
 
       homeConfigurations = {

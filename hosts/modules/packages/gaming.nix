@@ -10,9 +10,9 @@ let
 in
 {
   options = {
-    gaming.enable = lib.mkEnableOption "Add packages for gaming on linux";
+    myGaming.enable = lib.mkEnableOption "Add packages for gaming on linux";
   };
-  config = lib.mkIf config.gaming.enable {
+  config = lib.mkIf config.myGaming.enable {
     services.hardware.openrgb.enable = true;
     programs = {
       gamemode.enable = true;
