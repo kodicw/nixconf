@@ -2,7 +2,7 @@
 
 {
   stylix = {
-    image = ./resources/omsi.jpg;
+    image = ./resources/background.jpeg;
 
     polarity = "dark";
 

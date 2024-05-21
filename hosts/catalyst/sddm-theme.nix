@@ -1,7 +1,7 @@
 { pkgs }:
 
 let
-  imgLink = "https://portlandlivingonthecheap.com/lotc-cms/wp-content/uploads/2022/08/omsi-inside-e1659579181235.jpg";
+  imgLink = "https://w.wallhaven.cc/full/85/wallhaven-856dlk.png";
 
   image = pkgs.fetchurl {
     url = imgLink;

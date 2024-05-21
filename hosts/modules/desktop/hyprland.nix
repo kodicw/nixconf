@@ -2,7 +2,7 @@
 {
   options = {
     hyprlandDesktop.enable = lib.mkEnableOption "Enable Hyprland Desktop";
-    };
+  };
   # Install Hyperland and fix some stuff
   config = lib.mkIf config.hyprlandDesktop.enable {
     hardware.opengl = {

@@ -1,7 +1,16 @@
-_:
+{ pkgs, config, lib, ... }:
+let
+  cfg = config.myPlasma;
+in
+with lib;
 {
-  services.xserver = {
-    enable = true;
-    desktopManager.plasma5.enable = true;
+  options = {
+    myPlasma.enable = mkEnableOption "Plasma Desktop";
+  };
+  config = mkIf cfg.enable {
+    services.xserver = {
+      enable = true;
+      desktopManager.plasma5.enable = true;
+    };
   };
 }

@@ -1,42 +1,52 @@
-
 { config, pkgs, lib, ... }:
 let
   systemMonitoring = with pkgs; [
-    btop neofetch
+    btop
+    neofetch
   ];
-	
+
   systemCustomization = with pkgs; [
-    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
+    nerdfonts
   ];
-	
+
   #TODO split nix tools apart and only build for mainframee?
   utilities =
-   if config.networking.hostName == "mainframe" then
-    [
-      pkgs.home-manager
-      pkgs.nixos-anywhere
-      pkgs.onefetch
-      pkgs.rclone
-      pkgs.nurl
-      pkgs.colmena # for remote systems
-    ] else [];
-      
+    if config.networking.hostName == "mainframe" then
+      [
+        pkgs.home-manager
+        pkgs.nixos-anywhere
+        pkgs.onefetch
+        pkgs.rclone
+        pkgs.nurl
+        pkgs.colmena # for remote systems
+      ] else [ ];
+
 
   cli =
-   if config.networking.hostName == "mainframe" then
-    [
-      pkgs.helix 
-      pkgs.neovim 
-      # pkgs.marksman
-      pkgs.zellij 
-      pkgs.starship
-    ] else [pkgs.helix];
+    if config.networking.hostName == "mainframe" then
+      [
+        pkgs.helix
+        pkgs.neovim
+        pkgs.marksman
+        pkgs.zellij
+        pkgs.starship
+        pkgs.zoxide
+      ] else [
+      pkgs.neovim
+      pkgs.zoxide
+      pkgs.tmux
+    ];
 
   core = with pkgs; [
-    binutils ncurses5
-    zip unzip freeglut
-    gparted ntfs3g
+    binutils
+    ncurses5
+    zip
+    unzip
+    freeglut
+    gparted
+    ntfs3g
     git
+    skate
   ];
 in
 {
@@ -44,10 +54,10 @@ in
   security.rtkit.enable = true;
   powerManagement.cpuFreqGovernor = "performance";
   # Install Applications
-  environment.systemPackages = 
-    systemMonitoring ++ 
-    systemCustomization ++ 
-    core ++ 
+  environment.systemPackages =
+    systemMonitoring ++
+    systemCustomization ++
+    core ++
     cli ++
     utilities;
 
@@ -58,7 +68,7 @@ in
       enableSSHSupport = true;
     };
   };
-  	
+
   environment.variables = {
     EDITOR = "nvim";
 

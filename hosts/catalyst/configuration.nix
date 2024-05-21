@@ -5,20 +5,23 @@
 , inputs
 , ...
 }:
+
 {
   imports = [
     /etc/nixos/hardware-configuration.nix
-    # ../modules/desktop
+    ../modules/desktop
     ../modules/packages
+    ../modules/server
     ./stylix.nix
     inputs.stylix.nixosModules.stylix
     inputs.home-manager.nixosModules.home-manager
   ];
   myGaming.enable = false;
-  # hyprlandDesktop.enable = false;
   hacker.enable = false;
-
-  services.displayManager.sddm.theme = "${import ./sddm-theme.nix {inherit pkgs; }}";
+  my.nextcloud.enable = true;
+  my.xrdp = {
+    enable = true;
+  };
 
   nix = {
     gc.automatic = true;
@@ -30,7 +33,7 @@
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.users.ttc = import ./home.nix;
+  home-manager.users.jujabes = import ./home.nix;
 
   system.autoUpgrade = {
     enable = true;
@@ -38,8 +41,6 @@
     channel = "https://nixos.org/channels/nixos-unstable";
   };
 
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
@@ -50,22 +51,24 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
-  networking.hostName = "ttc";
+  networking.hostName = "catalyst";
 
   services.flatpak.enable = true;
 
   programs.dconf.enable = true;
+
   nixpkgs.config = {
     flatpak.flathub = true;
   };
+
   environment.systemPackages = [
     inputs.nix-software-center.packages.${system}.nix-software-center
-    pkgs.sddm-kcm
   ];
 
-  users.users.ttc = {
+  users.users.jujabes = {
     isNormalUser = true;
-    initialPassword = "ttc";
+    initialPassword = "password";
   };
+
   system.stateVersion = "23.05";
 }

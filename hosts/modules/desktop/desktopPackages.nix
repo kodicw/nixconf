@@ -1,16 +1,20 @@
-{config, pkgs, inputs, system, ...}:
+{ config, pkgs, inputs, system, ... }:
 let
   office = with pkgs; [
-    libreoffice obsidian
+    libreoffice
+    obsidian
     prusa-slicer
   ];
 
   multimediaTools = with pkgs; [
-    vlc mpv gimp helvum
+    vlc
+    mpv
+    gimp
+    helvum
   ];
 
   terminal = with pkgs; [
-    kitty 
+    kitty
   ];
 
   systemMonitoring = with pkgs; [
@@ -22,9 +26,9 @@ in
     cron.enable = true;
     printing.enable = true;
   };
-  environment.systemPackages = 
-    office ++ 
-    terminal ++ 
+  environment.systemPackages =
+    office ++
+    terminal ++
     multimediaTools ++
     systemMonitoring;
 }

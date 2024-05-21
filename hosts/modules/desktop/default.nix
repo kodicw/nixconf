@@ -1,9 +1,10 @@
-{lib, ...}:
+{ lib, ... }:
 {
   imports = [
+    ./sddm.nix
+    ./plasma.nix
     ./hyprland.nix
-    ./displaymanager.nix
+    ./greetTUI.nix
     ./desktopPackages.nix
   ];
-  hyprlandDesktop.enable = lib.mkDefault true;
 }

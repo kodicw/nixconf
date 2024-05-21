@@ -3,12 +3,13 @@
     # ./n8n.nix
     # ./paper.nix
     ./soft-server-ssh.nix
+    ./nextcloud.nix
     ./adguard.nix
-    ./ai.nix
+    ./xrdp.nix
     # ./nginx.nix
     # ./syncthing.nix
     ./photoprism.nix
-    ./octoprint.nix
+    # ./octoprint.nix
     ./homepage.nix
     #./home-assistant.nix
   ];

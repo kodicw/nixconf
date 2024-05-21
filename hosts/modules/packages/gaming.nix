@@ -2,9 +2,12 @@
 let
   gameApps = with pkgs; [
     discord
-    protontricks winetricks
-    faudio r2modman
-    wine bottles
+    protontricks
+    winetricks
+    faudio
+    r2modman
+    wine
+    bottles
     steamtinkerlaunch
   ];
 in
@@ -17,11 +20,11 @@ in
     programs = {
       gamemode.enable = true;
       gamescope.enable = true;
-        steam = {
-          enable = true;
-          remotePlay.openFirewall = true;
-          dedicatedServer.openFirewall = true;
-        };
+      steam = {
+        enable = true;
+        remotePlay.openFirewall = true;
+        dedicatedServer.openFirewall = true;
+      };
     };
     environment.systemPackages = gameApps;
   };

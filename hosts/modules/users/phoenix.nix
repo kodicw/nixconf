@@ -1,9 +1,10 @@
 { config, pkgs, ... }:
-let 
+let
   phoenixPackages = with pkgs; [
-    google-chrome 
+    google-chrome
     streamdeck-ui
-    obs-studio unityhub
+    obs-studio
+    unityhub
     blender
   ];
 in

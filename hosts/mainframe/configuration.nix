@@ -10,6 +10,10 @@
       ../modules/nvidia.nix
     ];
 
+  hyprlandDesktop.enable = true;
+  mySddm.enable = true;
+  myPlasma.enable = true;
+
   nix = {
     gc.automatic = true;
     settings = {
@@ -20,15 +24,12 @@
 
   boot.loader = {
     efi = {
-    efiSysMountPoint = "/boot/efi";
-  };
-
+      efiSysMountPoint = "/boot/efi";
+    };
     grub = {
       enable = true;
-      efiSupport = true;
       device = "nodev";
-      useOSProber = true;
-      theme =  "${import ./fallout-grub-theme.nix {inherit pkgs;}}";
+      theme = "${import ./fallout-grub-theme.nix { inherit pkgs; }}";
     };
   };
 
@@ -40,14 +41,14 @@
 
 
   # Auto updates
-  system.autoUpgrade = { 
-    enable = true;
-    allowReboot = true;
-    channel = "https://nixos.org/channels/nixos-unstable";
-  };
+  # system.autoUpgrade = { 
+  #   enable = true;
+  #   allowReboot = true;
+  #   channel = "https://nixos.org/channels/nixos-unstable";
+  # };
   environment.variables = {
     FLAKE = "/etc/nixos/";
-    };
+  };
 
 
   system.stateVersion = "23.05";
