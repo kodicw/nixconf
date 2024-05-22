@@ -1,11 +1,11 @@
 { pkgs, config, lib, ... }:
 let
-  cfg = config.myPlasma;
+  cfg = config.my.desk.plasma;
 in
 with lib;
 {
   options = {
-    myPlasma.enable = mkEnableOption "Plasma Desktop";
+    my.desk.plasma.enable = mkEnableOption "Plasma Desktop";
   };
   config = mkIf cfg.enable {
     services.xserver = {

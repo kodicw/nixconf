@@ -3,24 +3,27 @@
   imports =
     [
       /etc/nixos/hardware-configuration.nix
-      ../modules/users
-      ../modules/desktop
-      ../modules/packages
-      ../modules/network
-      ../modules/nvidia.nix
+      ../modules
     ];
 
-  hyprlandDesktop.enable = true;
-  mySddm.enable = true;
-  myPlasma.enable = true;
-
-  nix = {
-    gc.automatic = true;
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      auto-optimise-store = true;
+  my = {
+    desk = {
+      hyprland.enable = true;
+      sddm.enable = true;
+      plasma.enable = true;
     };
+    users = {
+      charles.enable = true;
+      phoenix.enable = true;
+      angel.enable = true;
+    };
+    nix.settings.enable = true;
+    gaming.setup.enable = true;
+    remoteAccess.enable = true;
+    developer.env.enable = true;
   };
+
+  drivers.nvidia.enable = true;
 
   boot.loader = {
     efi = {
@@ -39,13 +42,6 @@
     networkmanager.enable = true;
   };
 
-
-  # Auto updates
-  # system.autoUpgrade = { 
-  #   enable = true;
-  #   allowReboot = true;
-  #   channel = "https://nixos.org/channels/nixos-unstable";
-  # };
   environment.variables = {
     FLAKE = "/etc/nixos/";
   };

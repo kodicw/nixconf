@@ -6,9 +6,8 @@
     ./hacker.nix
     ./gaming.nix
     ./virtualization.nix
+    ./nixappstore.nix
+    ./nixsettings.nix
     ./remoteAccess.nix
   ];
-  myGaming.enable = lib.mkDefault true;
-  remoteAccess.enable = lib.mkDefault true;
-  hacker.enable = lib.mkDefault true;
 }

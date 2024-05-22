@@ -1,11 +1,11 @@
 { config, system, lib, ... }:
 let
-  cfg = config.mySddm;
+  cfg = config.my.desk.sddm;
 in
 with lib;
 {
   options = {
-    mySddm.enable = mkEnableOption "Enable SDDM";
+    my.desk.sddm.enable = mkEnableOption "Enable SDDM";
   };
   config = mkIf cfg.enable {
     services.xserver.enable = true;

@@ -10,12 +10,13 @@ let
     bottles
     steamtinkerlaunch
   ];
+  cfg = config.my.gaming.setup;
 in
 {
   options = {
-    myGaming.enable = lib.mkEnableOption "Add packages for gaming on linux";
+    my.gaming.setup.enable = lib.mkEnableOption "Add packages for gaming on linux";
   };
-  config = lib.mkIf config.myGaming.enable {
+  config = lib.mkIf cfg.enable {
     services.hardware.openrgb.enable = true;
     programs = {
       gamemode.enable = true;

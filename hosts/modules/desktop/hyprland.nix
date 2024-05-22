@@ -1,10 +1,13 @@
 { config, pkgs, lib, ... }:
+let
+  cfg = config.my.desk.hyprland;
+in
 {
   options = {
-    hyprlandDesktop.enable = lib.mkEnableOption "Enable Hyprland Desktop";
+    my.desk.hyprland.enable = lib.mkEnableOption "Enable Hyprland Desktop";
   };
   # Install Hyperland and fix some stuff
-  config = lib.mkIf config.hyprlandDesktop.enable {
+  config = lib.mkIf cfg.enable {
     hardware.opengl = {
       enable = true;
       driSupport = true;

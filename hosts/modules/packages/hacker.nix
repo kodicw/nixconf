@@ -56,12 +56,13 @@ let
       python-lsp-server
     ]))
   ];
+  cfg = config.my.developer.env;
 in
 {
   options = {
-    hacker.enable = lib.mkEnableOption "";
+    my.developer.env.enable = lib.mkEnableOption "";
   };
-  config = lib.mkIf config.hacker.enable {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages =
       javascript ++
       cc ++

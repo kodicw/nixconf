@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   phoenixPackages = with pkgs; [
     google-chrome
@@ -7,16 +7,23 @@ let
     unityhub
     blender
   ];
+  cfg = config.my.users.phoenix;
 in
+with lib;
 {
-  users = {
-    defaultUserShell = pkgs.nushellFull;
+  options = {
+    my.users.phoenix.enable = mkEnableOption "Enable Phoenix";
+  };
+  config = mkIf cfg.enable {
     users = {
-      Phoenix = {
-        isNormalUser = true;
-        description = "Boo";
-        extraGroups = [ "networkmanager" "wheel" "libvertd" ];
-        packages = phoenixPackages;
+      defaultUserShell = pkgs.nushellFull;
+      users = {
+        Phoenix = {
+          isNormalUser = true;
+          description = "Boo";
+          extraGroups = [ "networkmanager" "wheel" "libvertd" ];
+          packages = phoenixPackages;
+        };
       };
     };
   };

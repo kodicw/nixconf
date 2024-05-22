@@ -1,11 +1,11 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.my.nextcloud;
+  cfg = config.my.servers.nextcloud;
 in
 with lib;
 {
   options = {
-    my.nextcloud.enable = mkEnableOption "Enable Nextcloud";
+    my.servers.nextcloud.enable = mkEnableOption "Enable Nextcloud";
   };
   config = mkIf cfg.enable {
     environment.etc."nextcloud-admin-pass".text = "password";

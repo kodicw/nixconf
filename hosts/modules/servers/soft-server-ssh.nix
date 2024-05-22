@@ -1,11 +1,11 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.my.soft-serve;
+  cfg = config.my.servers.soft-serve;
 in
 with lib;
 {
   options = {
-    my.soft-serve.enable = mkEnableOption "Enable soft-serve";
+    my.servers.soft-serve.enable = mkEnableOption "Enable soft-serve";
   };
   config = mkIf cfg.enable {
     services.soft-serve = {

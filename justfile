@@ -7,8 +7,8 @@ rebuild-pre:
 rebuild: rebuild-pre
   scripts/system-flake-rebuild.nu
 
-rebuild-catalyst: rebuild-pre
-  nixos-rebuild --flake .#catalyst switch
+rebuild-catalyst:
+  sudo nixos-rebuild --impure --flake .#catalyst switch
 
 build-vm HOSTNAME: rebuild-pre
   scripts/vm-flake-build.nu {{HOSTNAME}}
@@ -24,6 +24,9 @@ node: rebuild-pre
   colmena apply
 
 send-it: rebuild-pre
+  just check
   git commit -am "send it!🌋"
   git push
   
+check: 
+  nix flake check --impure

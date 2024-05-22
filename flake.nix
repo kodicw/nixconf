@@ -52,13 +52,13 @@
           modules = [ ./hosts/catalyst/configuration.nix ];
         };
 
-        "nix-anywhere" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./hosts/nix-anywhere/configuration.nix
-          ];
-        };
-
+        # "nix-anywhere" = nixpkgs.lib.nixosSystem {
+        #   system = "x86_64-linux";
+        #   modules = [
+        #     ./hosts/nix-anywhere/configuration.nix
+        #   ];
+        # };
+        #
         "angel" = nixosSystem {
           specialArgs = { inherit inputs username system; };
           modules = [ ./hosts/angel/configuration.nix ];
@@ -100,16 +100,12 @@
           buildInputs = with pkgs; [
             nushellFull
             just
-            gum
-            lolcat
             git
             neovim
+            nixpkgs-fmt
           ];
           shellHook = ''
-            # echo "🗻 Minimal dev shell to get started" | lolcat
-            # com=`echo "🌋 You can use the following commands:" | lolcat`
-            # gum confirm "Quick start?" && echo $com && recipe=`just -l | grep rebuild | gum choose` && just $recipe
-            # gum confirm "Exit dev shell?" && exit
+            just -l
             nu
             exit
           '';

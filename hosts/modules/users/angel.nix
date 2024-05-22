@@ -1,14 +1,23 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
+let
+  cfg = config.my.users.angel;
+in
+with lib;
 {
-  users = {
-    defaultUserShell = pkgs.nushellFull;
+  options = {
+    my.users.angel.enable = mkEnableOption "Enable angel's user configuration";
+  };
+  config = mkIf cfg.enable {
     users = {
-      angel = {
-        isNormalUser = true;
-        description = "angel";
-        packages = with pkgs; [
-          google-chrome
-        ];
+      defaultUserShell = pkgs.nushellFull;
+      users = {
+        angel = {
+          isNormalUser = true;
+          description = "angel";
+          packages = with pkgs; [
+            google-chrome
+          ];
+        };
       };
     };
   };

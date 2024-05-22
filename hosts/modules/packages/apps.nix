@@ -69,11 +69,6 @@ in
     };
   };
 
-  environment.variables = {
-    EDITOR = "nvim";
-
-  };
-
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
   # Select internationalisation properties.

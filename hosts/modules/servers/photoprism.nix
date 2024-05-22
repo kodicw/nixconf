@@ -1,11 +1,11 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.my.photoprism;
+  cfg = config.my.servers.photoprism;
 in
 with lib;
 {
   options = {
-    my.photoprism.enable = mkEnableOption "Photoprism";
+    my.servers.photoprism.enable = mkEnableOption "Photoprism";
   };
   config = mkIf cfg.enable
     {

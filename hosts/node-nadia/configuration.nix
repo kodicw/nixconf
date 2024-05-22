@@ -3,20 +3,25 @@
   imports =
     [
       ./hardware-configuration.nix
-      ../modules/server
-      ../modules/network
-      ../modules/desktop
-      ../modules/users/charles.nix
-      ../modules/packages
-      ../modules/nvidia.nix
+      ../modules
     ];
 
-  myPlasma.enable = true;
-  mySddm.enable = true;
-  myHomepageDashboard.enable = true;
-  myAdguardHome.enable = true;
-  my.photoprism.enable = true;
-  my.soft-serve.enable = true;
+  my = {
+    desk = {
+      sddm.enable = true;
+      plasma.enable = true;
+    };
+    users.charles.enable = true;
+    remoteAccess.enable = true;
+    servers = {
+      adguardHome.enable = true;
+      photoprism.enable = true;
+      soft-serve.enable = true;
+      homepage.enable = true;
+    };
+  };
+  drivers.nvidia.enable = true;
+
 
   services.ollama.enable = true;
 

@@ -1,11 +1,11 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.myHomepageDashboard;
+  cfg = config.my.servers.homepage;
 in
 with lib;
 {
   options = {
-    myHomepageDashboard.enable = mkEnableOption "Enable the homepage dashboard";
+    my.servers.homepage.enable = mkEnableOption "Enable the homepage dashboard";
   };
   config = mkIf cfg.enable {
     services.homepage-dashboard = {

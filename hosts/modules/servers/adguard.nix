@@ -1,11 +1,11 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.myAdguardHome;
+  cfg = config.my.servers.adguardHome;
 in
 with lib;
 {
   options = {
-    myAdguardHome.enable = mkEnableOption "Enable Adguard Home";
+    my.servers.adguardHome.enable = mkEnableOption "Enable Adguard Home";
   };
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
