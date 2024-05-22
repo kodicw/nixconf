@@ -102,12 +102,14 @@
             just
             gum
             lolcat
+            git
+            neovim
           ];
           shellHook = ''
-            echo "🗻 Minimal dev shell to get started" | lolcat
-            com=`echo "🌋 You can use the following commands:" | lolcat`
-            gum confirm "Quick start?" && echo $com && recipe=`just -l | grep rebuild | gum choose` && just $recipe
-            gum confirm "Exit dev shell?" && exit
+            # echo "🗻 Minimal dev shell to get started" | lolcat
+            # com=`echo "🌋 You can use the following commands:" | lolcat`
+            # gum confirm "Quick start?" && echo $com && recipe=`just -l | grep rebuild | gum choose` && just $recipe
+            # gum confirm "Exit dev shell?" && exit
             nu
             exit
           '';

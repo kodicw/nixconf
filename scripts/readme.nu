@@ -14,13 +14,16 @@ def walk_dirs [dirs: table state: list] {
     return $f
 }	
 
+#TODO filter function that takes a record {contains: [] absent: []}
 walk_dirs $dirs [] 
-| filter {|d| not ("home" in $d) and not ("server" in $d) and not ("angel" in $d)}
-| filter {|d| ($d =~ configuration ) or ($d =~ just) or ($d =~ .md)}
+| filter {|d| not ("hardware" in $d) and not ("home" in $d) and not ("server" in $d) and not ("angel" in $d)}
+| filter {|d| ($d =~ configuration ) or ($d =~ just) or ($d =~ ".sh")}
 | each {|d|
-    {path: $d text: (cat $d)}
+    {
+        path: $d 
+        content: (cat $d)
+    }
 } 
-| drop nth 0 
 | to text
 | $in + $readme
 

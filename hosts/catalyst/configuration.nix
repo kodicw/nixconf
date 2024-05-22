@@ -41,9 +41,13 @@
     channel = "https://nixos.org/channels/nixos-unstable";
   };
 
-  boot.loader.grub = {
-    enable = true;
-    efiSupport = true;
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    grub = {
+      enable = true;
+      efiSupport = true;
+      device = "/dev/sda";
+    };
   };
 
   services.xserver = {
