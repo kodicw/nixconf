@@ -25,11 +25,18 @@
     servers = {
       xrdp.enable = true;
       nextcloud.enable = true;
+      neverSleep = true;
     };
   };
 
   drivers.nvidia.enable = true;
 
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = true;
+    settings.KbdInteractiveAuthentication = false;
+    # settings.PermitRootLogin = "no";  
+  };
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.jujabes = import ./home.nix;

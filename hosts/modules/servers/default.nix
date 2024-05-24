@@ -6,6 +6,7 @@
     ./nextcloud.nix
     ./adguard.nix
     ./xrdp.nix
+    ./sleep.nix
     # ./nginx.nix
     # ./syncthing.nix
     ./photoprism.nix

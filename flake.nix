@@ -1,3 +1,7 @@
+# Resources
+# noogle https://noogle.odev
+# nixos https://nixos.org
+# mynixos https://mynixos.com
 {
   # run the command below for quick menu
   description = "A simple config";
@@ -52,43 +56,9 @@
           modules = [ ./hosts/catalyst/configuration.nix ];
         };
 
-        # "nix-anywhere" = nixpkgs.lib.nixosSystem {
-        #   system = "x86_64-linux";
-        #   modules = [
-        #     ./hosts/nix-anywhere/configuration.nix
-        #   ];
-        # };
-        #
         "angel" = nixosSystem {
           specialArgs = { inherit inputs username system; };
           modules = [ ./hosts/angel/configuration.nix ];
-        };
-      };
-
-      colmena = {
-        meta = {
-          nixpkgs = import nixpkgs {
-            system = "x86_64-linux";
-          };
-        };
-        node-nadia = {
-          deployment = {
-            targetHost = "node-nadia";
-          };
-          imports = [ ./hosts/node-nadia/configuration.nix ];
-        };
-      };
-
-
-
-      homeConfigurations = {
-        "charles" = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-          };
-          extraSpecialArgs = { inherit inputs username; };
-          modules = [ ./home-manager/home.nix ];
         };
       };
 
