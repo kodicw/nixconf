@@ -30,3 +30,6 @@ send-it: rebuild-pre
   
 check: 
   nix flake check --impure
+
+search:
+  manix "" | grep '^# ' | str replace -a  "#" "" | gum filter | split row " " | last | manix $in

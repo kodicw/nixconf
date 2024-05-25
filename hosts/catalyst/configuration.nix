@@ -24,7 +24,11 @@
     };
     servers = {
       xrdp.enable = true;
-      nextcloud.enable = true;
+      nextcloud = {
+        enable = true;
+        hostName = "catalyst";
+        trusted_domains = [ "catalyst" ];
+      };
       neverSleep = true;
     };
   };

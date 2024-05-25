@@ -47,6 +47,7 @@ let
     ntfs3g
     git
     skate
+    manix
   ];
 in
 {

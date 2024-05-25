@@ -68,11 +68,12 @@
         in
         pkgs.mkShell {
           buildInputs = with pkgs; [
-            nushellFull
+            nushell
             just
             git
             neovim
             nixpkgs-fmt
+            manix
           ];
           shellHook = ''
             just -l
