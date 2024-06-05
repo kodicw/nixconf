@@ -56,6 +56,11 @@
           modules = [ ./hosts/catalyst/configuration.nix ];
         };
 
+        "steam-box" = nixosSystem {
+          specialArgs = { inherit inputs username system; };
+          modules = [ ./hosts/steam-box/configuration.nix ];
+        };
+
         "angel" = nixosSystem {
           specialArgs = { inherit inputs username system; };
           modules = [ ./hosts/angel/configuration.nix ];

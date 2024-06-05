@@ -48,6 +48,7 @@ let
     git
     skate
     manix
+    grapejuice
   ];
 in
 {

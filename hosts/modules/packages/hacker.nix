@@ -35,7 +35,7 @@ let
     zig
   ];
 
-  ython = with pkgs; [
+  python = with pkgs; [
     (python311.withPackages (ps: with ps; [
       pandas
       pillow
@@ -69,7 +69,7 @@ in
       tools ++
       golang ++
       learningLanguages ++
-      ython ++
+      python ++
       nixStuff;
   };
 }

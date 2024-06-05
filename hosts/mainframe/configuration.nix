@@ -40,6 +40,19 @@
   networking = {
     hostName = "mainframe";
     networkmanager.enable = true;
+    interfaces.br0 = {
+      useDHCP = true;
+      virtual = true;
+    };
+    interfaces.pf0 = {
+      virtual = true;
+      useDHCP = true;
+    };
+    bridges = {
+      br0 = {
+        interfaces = [ "enp2s0" ];
+      };
+    };
   };
 
   environment.variables = {

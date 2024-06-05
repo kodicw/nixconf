@@ -9,5 +9,7 @@
     ./nixappstore.nix
     ./nixsettings.nix
     ./remoteAccess.nix
+    ./pipewireLowLatency.nix
+    ./platformOptimizations.nix
   ];
 }

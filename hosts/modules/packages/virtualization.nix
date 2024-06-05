@@ -22,6 +22,7 @@
     imports = [ <nixpkgs/nixos/modules/virtualisation/qemu-vm.nix> ];
     virtualisation.memorySize = 8192;
     virtualisation.cores = 4;
+    virtualisation.diskSize = 20000;
   };
 }
 
